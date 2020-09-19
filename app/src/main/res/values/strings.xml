@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">DozeeCode For Health</string>
+
+    <string name="location_permission_denied">Permission Denied</string>
+    <string name="permission_required_toast">Location Permission Required</string>
+    <string name="permission_rationale_location">This application requires to access your location.</string>
+    <string name="share">Share</string>
+    <string name="daily">Daily</string>
+    <string name="weekly">Weekly</string>
+    <string name="monthly">Monthly</string>
+    <string name="whatsapp">WhatsApp</string>
+    <string name="vitals">Vitals</string>
+</resources>

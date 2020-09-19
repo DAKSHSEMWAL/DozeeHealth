@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <item
+        android:id="@+id/navigation_vital"
+        android:icon="@drawable/ic_vitals"
+        android:title="@string/vitals"
+        app:showAsAction="always"
+        tools:ignore="AlwaysShowAction" />
+
+    <item
+        android:id="@+id/navigation_call"
+        android:icon="@drawable/ic_call"
+        android:title="@string/vitals"
+        app:showAsAction="always"
+        tools:ignore="AlwaysShowAction" />
+
+    <item
+        android:id="@+id/navigation_email"
+        android:icon="@drawable/ic_email"
+        android:title="@string/vitals"
+        app:showAsAction="always"
+        tools:ignore="AlwaysShowAction" />
+
+    <item
+        android:id="@+id/navigation_whatsapp"
+        android:icon="@drawable/ic_whatsapp"
+        android:title="@string/whatsapp"
+        app:showAsAction="always"
+        tools:ignore="AlwaysShowAction" />
+</menu>

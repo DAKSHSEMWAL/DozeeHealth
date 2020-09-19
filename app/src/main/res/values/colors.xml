@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#0E0D1D</color>
+    <color name="colorPrimaryDark">#0E0D1D</color>
+    <color name="colorAccent">#0E0D1D</color>
+
+
+
+    <color name="Ebony">#0E0D1D</color>
+    <color name="Ebonyopaueq">#660E0D1D</color>
+    <color name="White">#FFFFFF</color>
+    <color name="Whiteopaque">#28FFFFFF</color>
+    <color name="CodGray">#0F0F0F</color>
+    <color name="Scampi">#595BAE</color>
+    <color name="GoldenTainoi">#FFD15B</color>
+    <color name="ShipCove">#7276BF</color>
+    <color name="Seagull">#7dbae1</color>
+    <color name="Valhalla">#1C184E</color>
+</resources>

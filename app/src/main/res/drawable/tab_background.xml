@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape android:shape="rectangle"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <gradient
+        android:centerColor="@color/ShipCove"
+        android:endColor="@color/ShipCove"
+        android:gradientRadius="270"
+        android:startColor="@color/ShipCove"
+        android:type="radial" />
+    <stroke android:color="@color/ShipCove"
+        android:width="@dimen/_1sdp"/>
+    <corners android:radius="@dimen/_10sdp"/>
+</shape>
