@@ -33,6 +33,7 @@ import com.motishare.dozeecodeforhealth.databinding.DialogBloodpressureDetailsBi
 import com.motishare.dozeecodeforhealth.databinding.DialogBreathrateDetailsBinding;
 import com.motishare.dozeecodeforhealth.databinding.DialogHeartDetailsBinding;
 import com.motishare.dozeecodeforhealth.databinding.DialogSleepscoreDetailsBinding;
+import com.motishare.dozeecodeforhealth.databinding.DialogStresslevelDetailsBinding;
 import com.motishare.dozeecodeforhealth.model.BloodPressure;
 import com.motishare.dozeecodeforhealth.model.QuestionModel;
 import com.motishare.dozeecodeforhealth.model.UserData;
@@ -70,6 +71,7 @@ public class MainActivity extends BaseActivity {
     DialogBloodoxygenDetailsBinding dialogBloodoxygenDetailsBinding;
     DialogBloodpressureDetailsBinding dialogBloodpressureDetailsBinding;
     DialogSleepscoreDetailsBinding dialogSleepscoreDetailsBinding;
+    DialogStresslevelDetailsBinding dialogStresslevelDetailsBinding;
     QuestionModel questionModel;
 
     @Override
@@ -268,7 +270,7 @@ public class MainActivity extends BaseActivity {
             showSleepRate();
         });
         binding.more6.setOnClickListener(v -> {
-            showBreathDialog();
+            showStressLevel();
         });
     }
 
@@ -608,6 +610,38 @@ public class MainActivity extends BaseActivity {
             if (i == KeyEvent.KEYCODE_BACK) {
 
                 revealShowImage(dialogSleepscoreDetailsBinding.getRoot(), false, dialog);
+                return true;
+            }
+
+            return false;
+        });
+
+
+        Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+
+        dialog.show();
+    }
+
+    private void showStressLevel() {
+
+        final Dialog dialog = new Dialog(mContext, R.style.MyAlertDialogStyle);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialogStresslevelDetailsBinding = DataBindingUtil.inflate(LayoutInflater.from(dialog.getContext()), R.layout.dialog_stresslevel_details, null, false);
+        Dali.create(mContext).load(binding.getRoot()).blurRadius(17).into(dialogStresslevelDetailsBinding.imgBg);
+        dialog.setContentView(dialogStresslevelDetailsBinding.getRoot());
+        dialogStresslevelDetailsBinding.knowMore.setOnClickListener(v -> {
+            revealShowImage(dialogStresslevelDetailsBinding.getRoot(), false, dialog);
+        });
+        dialogStresslevelDetailsBinding.drop.setOnClickListener(v -> {
+            revealShowImage(dialogStresslevelDetailsBinding.getRoot(), false, dialog);
+        });
+
+        dialog.setOnShowListener(dialogInterface -> revealShowImage(dialogStresslevelDetailsBinding.getRoot(), true, null));
+
+        dialog.setOnKeyListener((dialogInterface, i, keyEvent) -> {
+            if (i == KeyEvent.KEYCODE_BACK) {
+
+                revealShowImage(dialogStresslevelDetailsBinding.getRoot(), false, dialog);
                 return true;
             }
 
