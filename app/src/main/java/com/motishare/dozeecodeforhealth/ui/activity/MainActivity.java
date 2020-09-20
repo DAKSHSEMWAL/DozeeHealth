@@ -6,12 +6,12 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.ShareCompat;
+import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 import androidx.databinding.DataBindingUtil;
 
@@ -19,10 +19,14 @@ import com.google.gson.reflect.TypeToken;
 import com.motishare.dozeecodeforhealth.R;
 import com.motishare.dozeecodeforhealth.core.BaseActivity;
 import com.motishare.dozeecodeforhealth.databinding.ActivityMainBinding;
+import com.motishare.dozeecodeforhealth.model.BloodPressure;
+import com.motishare.dozeecodeforhealth.model.QuestionModel;
 import com.motishare.dozeecodeforhealth.model.UserData;
 import com.motishare.dozeecodeforhealth.model.UserModel;
 import com.motishare.dozeecodeforhealth.utils.Common;
 import com.motishare.dozeecodeforhealth.utils.Dialogs;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
 import java.lang.reflect.Type;
@@ -45,15 +49,16 @@ public class MainActivity extends BaseActivity {
     UserModel userModel;
     List<UserData> userData = new ArrayList<>();
     public ActivityMainBinding binding;
-
+    QuestionModel questionModel;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(mContext, R.layout.activity_main);
         loader = (ConstraintLayout) binding.loader.getRoot();
-        initView();
         getData();
+        initView();
         getDetails();
+        getQuestion();
         implementListeners();
     }
 
@@ -73,23 +78,71 @@ public class MainActivity extends BaseActivity {
                 String date = getDate(DATE20, DATE4, c1.toString());
                 Log.e("Date", date + " " + today);
                 if (!today.equals(date)) {
-                    binding.stresslevel.setText("0");
-                    binding.heartRatetext.setText("0");
-                    binding.breathRatetext.setText("0");
-                    binding.o2text.setText("0");
-                    binding.Diastole.setText("0");
-                    binding.Systole.setText("0");
-                    binding.sleepratetext.setText("0");
+                    binding.stresslevel.setText("-");
+                    binding.heartRatetext.setText("-");
+                    binding.breathRatetext.setText("-");
+                    binding.o2text.setText("-");
+                    binding.Diastole.setText("-");
+                    binding.Systole.setText("-");
+                    binding.sleepratetext.setText("-");
+
                 } else {
                     binding.stresslevel.setText(String.format(Locale.getDefault(), "%d", a.getRecovery()));
-                    binding.heartRatetext.setText(String.format(Locale.getDefault(), "%d", a.getHeartRate()));
                     binding.breathRatetext.setText(String.format(Locale.getDefault(), "%d", a.getBreathRate()));
                     binding.o2text.setText(String.format(Locale.getDefault(), "%d", a.getO2()));
-                    binding.Diastole.setText(String.format(Locale.getDefault(), "%d", a.getBloodPressure().getDiastole()));
-                    binding.Systole.setText(String.format(Locale.getDefault(), "%d", a.getBloodPressure().getSystole()));
                     binding.sleepratetext.setText(String.format(Locale.getDefault(), "%d", a.getSleepscore()));
+                    if (a.getBloodPressure() != null) {
+                        setBloodpressureIndicator(a.getBloodPressure());
+                        binding.Diastole.setText(String.format(Locale.getDefault(), "%d", a.getBloodPressure().getDiastole()));
+                        binding.Systole.setText(String.format(Locale.getDefault(), "%d", a.getBloodPressure().getSystole()));
+                    } else {
+                        binding.Diastole.setText("-");
+                        binding.Systole.setText("-");
+                    }
+                    if (a.getHeartRate() != null) {
+                        binding.heartRatetext.setText(String.format(Locale.getDefault(), "%d", a.getHeartRate()));
+                        setHeartRateLevel(a.getHeartRate());
+                    } else {
+                        binding.heartRatetext.setText("-");
+                    }
+                    if (a.getRecovery() != null) {
+                        binding.stresslevel.setText(String.format(Locale.getDefault(), "%d", a.getRecovery()));
+                        setHeartRateLevel(a.getHeartRate());
+                    } else {
+                        binding.stresslevel.setText("-");
+                    }
                 }
             }
+        }
+    }
+
+    private void setQuestion(){
+        binding.questiona.setText(String.format("%s, %s. %s", questionModel.getGreeting(), userModel.getName().substring(0, userModel.getName().indexOf(' ')), questionModel.getQuestion()));
+        /*binding.questiona.setText(String.format("%s, %s.%s", questionModel.getGreeting(), userModel.getName(), questionModel.getQuestion()));*/
+    }
+
+    private void setHeartRateLevel(Integer heartRate) {
+        if (heartRate < 45 && heartRate > 75) {
+            binding.heartratelevel.setBackgroundColor(ContextCompat.getColor(mContext, R.color.Unhealthy));
+        } else if ((heartRate >= 45 && heartRate <= 54) || (heartRate >= 66 && heartRate <= 75)) {
+            binding.heartratelevel.setBackgroundColor(ContextCompat.getColor(mContext, R.color.Borderline));
+        } else if (heartRate >= 55 && heartRate <= 65) {
+            binding.heartratelevel.setBackgroundColor(ContextCompat.getColor(mContext, R.color.Healthy));
+        }
+    }
+
+    private void setStressLevel() {
+    }
+
+    private void setBloodpressureIndicator(@NotNull BloodPressure bloodPressure) {
+        if (bloodPressure.getSystole() <= 130 && bloodPressure.getDiastole() <= 80) {
+            binding.bloodpressurelevel.setBackgroundColor(ContextCompat.getColor(mContext, R.color.Healthy));
+        } else if (bloodPressure.getSystole() > 130 && bloodPressure.getSystole() < 140 && bloodPressure.getDiastole() > 80 && bloodPressure.getDiastole() < 90) {
+            binding.bloodpressurelevel.setBackgroundColor(ContextCompat.getColor(mContext, R.color.Borderline));
+        } else if (bloodPressure.getSystole() >= 140 && bloodPressure.getDiastole() <= 90) {
+            binding.bloodpressurelevel.setBackgroundColor(ContextCompat.getColor(mContext, R.color.Unhealthy));
+        } else {
+            Log.e("Hi", "Ho4" + (bloodPressure.getSystole() > 130 && bloodPressure.getSystole() < 140));
         }
     }
 
@@ -164,7 +217,42 @@ public class MainActivity extends BaseActivity {
         });
     }
 
-    private void getDetails()                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          {
+    private void getQuestion() {
+        showLoader(loader_type);
+
+        call = api.userquestion();
+
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(@NonNull Call<ResponseBody> call, @NonNull Response<ResponseBody> response) {
+                try {
+                    Type type = new TypeToken<QuestionModel>() {
+                    }.getType();
+                    if (response.code() == 200) {
+                        assert response.body() != null;
+                        questionModel = gson.fromJson(response.body().string(), type);
+                        setQuestion();
+                        Log.e("Data", questionModel.toString());
+                    } else {
+                        Dialogs.notifyalert(getString(R.string.server_error_msg), "OK", mContext, false, ok -> {
+
+                        });
+                    }
+                } catch (Exception e) {
+                    Dialogs.notifyalert(getString(R.string.server_error_msg), "OK", mContext);
+                    e.printStackTrace();
+                }
+                hideLoader(loader_type);
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
+                hideLoader(loader_type);
+            }
+        });
+    }
+
+    private void getDetails() {
         showLoader(loader_type);
 
         call = api.userdata();

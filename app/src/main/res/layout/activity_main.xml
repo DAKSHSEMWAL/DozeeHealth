@@ -275,10 +275,23 @@
                                 android:id="@+id/more1"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/_19sdp"
                                 android:layout_marginEnd="@dimen/_20sdp"
                                 android:src="@drawable/ic_more"
                                 app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="@id/text"
+                                app:layout_constraintBottom_toBottomOf="@id/text"/>
+
+                            <TextView
+                                android:id="@+id/text"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/_15sdp"
+                                android:layout_marginTop="@dimen/_19sdp"
+                                android:fontFamily="@font/nunito_semibold"
+                                android:text="@string/heart_rate"
+                                android:textColor="@color/White1opaque"
+                                android:textSize="@dimen/_11sdp"
+                                app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
 
                             <TextView
@@ -316,6 +329,14 @@
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintStart_toStartOf="parent" />
 
+                            <View
+                                android:id="@+id/heartratelevel"
+                                android:layout_width="0dp"
+                                android:layout_height="@dimen/_3sdp"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"/>
+
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
                     </androidx.cardview.widget.CardView>
@@ -343,10 +364,23 @@
                                 android:id="@+id/more2"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/_19sdp"
                                 android:layout_marginEnd="@dimen/_20sdp"
                                 android:src="@drawable/ic_more"
                                 app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="@id/text1"
+                                app:layout_constraintBottom_toBottomOf="@id/text1"/>
+
+                            <TextView
+                                android:id="@+id/text1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/_15sdp"
+                                android:layout_marginTop="@dimen/_19sdp"
+                                android:fontFamily="@font/nunito_semibold"
+                                android:text="@string/breath_rate"
+                                android:textColor="@color/White1opaque"
+                                android:textSize="@dimen/_11sdp"
+                                app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
 
                             <TextView
@@ -384,6 +418,13 @@
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintStart_toStartOf="parent" />
 
+                            <View
+                                android:id="@+id/breathratelevel"
+                                android:layout_width="0dp"
+                                android:layout_height="@dimen/_3sdp"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"/>
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
@@ -411,10 +452,23 @@
                                 android:id="@+id/more3"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/_19sdp"
                                 android:layout_marginEnd="@dimen/_20sdp"
                                 android:src="@drawable/ic_more"
                                 app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="@id/text2"
+                                app:layout_constraintBottom_toBottomOf="@id/text2"/>
+
+                            <TextView
+                                android:id="@+id/text2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/_15sdp"
+                                android:layout_marginTop="@dimen/_19sdp"
+                                android:fontFamily="@font/nunito_semibold"
+                                android:text="@string/blood_oxygen"
+                                android:textColor="@color/White1opaque"
+                                android:textSize="@dimen/_11sdp"
+                                app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
 
                             <TextView
@@ -452,6 +506,14 @@
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintStart_toStartOf="parent" />
 
+                            <View
+                                android:id="@+id/bloodoxygenlevel"
+                                android:layout_width="0dp"
+                                android:layout_height="@dimen/_3sdp"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"/>
+
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
                     </androidx.cardview.widget.CardView>
@@ -479,10 +541,22 @@
                                 android:id="@+id/more4"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/_19sdp"
                                 android:layout_marginEnd="@dimen/_20sdp"
                                 android:src="@drawable/ic_more"
                                 app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="@id/text3"
+                                app:layout_constraintBottom_toBottomOf="@id/text3"/>
+                            <TextView
+                                android:id="@+id/text3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/_15sdp"
+                                android:layout_marginTop="@dimen/_19sdp"
+                                android:fontFamily="@font/nunito_semibold"
+                                android:text="@string/blood_pressure"
+                                android:textColor="@color/White1opaque"
+                                android:textSize="@dimen/_11sdp"
+                                app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
 
                             <TextView
@@ -551,6 +625,14 @@
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintStart_toStartOf="parent" />
 
+                            <View
+                                android:id="@+id/bloodpressurelevel"
+                                android:layout_width="0dp"
+                                android:layout_height="@dimen/_3sdp"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"/>
+
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
                     </androidx.cardview.widget.CardView>
@@ -577,10 +659,23 @@
                                 android:id="@+id/more5"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/_19sdp"
                                 android:layout_marginEnd="@dimen/_20sdp"
                                 android:src="@drawable/ic_more"
                                 app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="@id/text5"
+                                app:layout_constraintBottom_toBottomOf="@id/text5"/>
+
+                            <TextView
+                                android:id="@+id/text5"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/_15sdp"
+                                android:layout_marginTop="@dimen/_19sdp"
+                                android:fontFamily="@font/nunito_semibold"
+                                android:text="@string/sleep_rate"
+                                android:textColor="@color/White1opaque"
+                                android:textSize="@dimen/_11sdp"
+                                app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
 
                             <TextView
@@ -618,6 +713,14 @@
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintStart_toStartOf="parent" />
 
+                            <View
+                                android:id="@+id/sleeplevel"
+                                android:layout_width="0dp"
+                                android:layout_height="@dimen/_3sdp"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"/>
+
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
                     </androidx.cardview.widget.CardView>
@@ -644,10 +747,24 @@
                                 android:id="@+id/more6"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/_19sdp"
                                 android:layout_marginEnd="@dimen/_20sdp"
                                 android:src="@drawable/ic_more"
                                 app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="@id/text6"
+                                app:layout_constraintBottom_toBottomOf="@id/text6"/>
+
+
+                            <TextView
+                                android:id="@+id/text6"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/_15sdp"
+                                android:layout_marginTop="@dimen/_19sdp"
+                                android:fontFamily="@font/nunito_semibold"
+                                android:text="@string/stress_rate"
+                                android:textColor="@color/White1opaque"
+                                android:textSize="@dimen/_11sdp"
+                                app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
 
                             <TextView
@@ -685,6 +802,14 @@
                                 android:src="@drawable/ic_stress"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintStart_toStartOf="parent" />
+
+                            <View
+                                android:id="@+id/stresslevell"
+                                android:layout_width="0dp"
+                                android:layout_height="@dimen/_3sdp"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"/>
 
                         </androidx.constraintlayout.widget.ConstraintLayout>
 

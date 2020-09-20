@@ -25,5 +25,8 @@ public interface RetrofitInterface {
     @GET("user/details")
     Call<ResponseBody> userdetails();
 
+    @GET("user/question")
+    Call<ResponseBody> userquestion();
+
 
 }

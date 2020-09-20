@@ -20,5 +20,13 @@
     <string name="okay">OK</string>
     <string name="ok">OK</string>
     <string name="server_error_msg">Server isn\'t responding. Please try after some time.</string>
+    <string name="email">Email</string>
+    <string name="call">Call</string>
+    <string name="heart_rate">Heart Rate</string>
+    <string name="breath_rate">Breath Rate</string>
+    <string name="blood_oxygen">Blood Oxygen</string>
+    <string name="blood_pressure">Blood Pressure</string>
+    <string name="sleep_rate">Sleep Rate</string>
+    <string name="stress_rate">Stress Rate</string>
 
 </resources>

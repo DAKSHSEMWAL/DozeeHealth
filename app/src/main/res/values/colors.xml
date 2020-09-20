@@ -21,5 +21,8 @@
     <color name="Valhalla">#1C184E</color>
     <color name="PortGore">#1F2142</color>
     <color name="Merlot">#871c23</color>
+    <color name="Healthy">#2CBE61</color>
+    <color name="Borderline">#FF9F31</color>
+    <color name="Unhealthy">#FF5757</color>
 
 </resources>

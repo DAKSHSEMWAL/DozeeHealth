@@ -41,4 +41,12 @@ public class QuestionModel {
         this.answers = answers;
     }
 
+    @Override
+    public String toString() {
+        return "QuestionModel{" +
+                "question='" + question + '\'' +
+                ", greeting='" + greeting + '\'' +
+                ", answers=" + answers +
+                '}';
+    }
 }
