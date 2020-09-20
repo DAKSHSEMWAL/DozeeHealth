@@ -159,7 +159,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/nunito_bold"
-                        android:text="@string/hi_rishi_how_are_you_feeling_this_morning"
                         android:textColor="@color/White"
                         android:textSize="@dimen/_8sdp"
                         app:layout_constraintBottom_toTopOf="@id/fresh"

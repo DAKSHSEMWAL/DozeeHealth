@@ -50,6 +50,7 @@ public class MainActivity extends BaseActivity {
     List<UserData> userData = new ArrayList<>();
     public ActivityMainBinding binding;
     QuestionModel questionModel;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -99,24 +100,71 @@ public class MainActivity extends BaseActivity {
                         binding.Diastole.setText("-");
                         binding.Systole.setText("-");
                     }
-                    if (a.getHeartRate() != null) {
+                    if (a.getHeartRate() != null && a.getHeartRate() > 0) {
                         binding.heartRatetext.setText(String.format(Locale.getDefault(), "%d", a.getHeartRate()));
                         setHeartRateLevel(a.getHeartRate());
                     } else {
                         binding.heartRatetext.setText("-");
                     }
-                    if (a.getRecovery() != null) {
+                    if (a.getBreathRate() != null && a.getBreathRate() > 0) {
+                        binding.breathRatetext.setText(String.format(Locale.getDefault(), "%d", a.getHeartRate()));
+                        setBreathrate(a.getBreathRate());
+                    } else {
+                        binding.breathRatetext.setText("-");
+                    }
+                    if (a.getRecovery() != null && a.getRecovery() > 0) {
                         binding.stresslevel.setText(String.format(Locale.getDefault(), "%d", a.getRecovery()));
-                        setHeartRateLevel(a.getHeartRate());
+                        setStressLevel(a.getRecovery());
                     } else {
                         binding.stresslevel.setText("-");
+                    }
+                    if (a.getSleepscore() != null && a.getSleepscore() > 0) {
+                        setSleepScoreLevel(a.getSleepscore());
+                    } else {
+                        binding.sleepratetext.setText("-");
+                    }
+                    if (a.getO2() != null && a.getO2() > 0) {
+                        setOxygen(a.getO2());
+                    } else {
+                        binding.sleepratetext.setText("-");
                     }
                 }
             }
         }
     }
 
-    private void setQuestion(){
+    private void setBreathrate(Integer breathRate) {
+        if(breathRate<8||breathRate>15){
+            binding.breathratelevel.setBackgroundColor(ContextCompat.getColor(mContext, R.color.Unhealthy));
+        }
+        else if(breathRate <= 12){
+            binding.breathratelevel.setBackgroundColor(ContextCompat.getColor(mContext, R.color.Healthy));
+        }else {
+            binding.breathratelevel.setBackgroundColor(ContextCompat.getColor(mContext, R.color.Borderline));
+        }
+    }
+
+    private void setOxygen(Integer o2) {
+        if (o2 > 94) {
+            binding.bloodoxygenlevel.setBackgroundColor(ContextCompat.getColor(mContext, R.color.Healthy));
+        } else if (o2 >= 90 && o2 <= 94) {
+            binding.bloodoxygenlevel.setBackgroundColor(ContextCompat.getColor(mContext, R.color.Borderline));
+        } else if (o2 < 90) {
+            binding.bloodoxygenlevel.setBackgroundColor(ContextCompat.getColor(mContext, R.color.Unhealthy));
+        }
+    }
+
+    private void setSleepScoreLevel(Integer sleepscore) {
+        if (sleepscore > 80) {
+            binding.sleeplevel.setBackgroundColor(ContextCompat.getColor(mContext, R.color.Healthy));
+        } else if (sleepscore >= 70 && sleepscore <= 79) {
+            binding.sleeplevel.setBackgroundColor(ContextCompat.getColor(mContext, R.color.Borderline));
+        } else if (sleepscore < 70) {
+            binding.sleeplevel.setBackgroundColor(ContextCompat.getColor(mContext, R.color.Unhealthy));
+        }
+    }
+
+    private void setQuestion() {
         binding.questiona.setText(String.format("%s, %s. %s", questionModel.getGreeting(), userModel.getName().substring(0, userModel.getName().indexOf(' ')), questionModel.getQuestion()));
         /*binding.questiona.setText(String.format("%s, %s.%s", questionModel.getGreeting(), userModel.getName(), questionModel.getQuestion()));*/
     }
@@ -131,7 +179,14 @@ public class MainActivity extends BaseActivity {
         }
     }
 
-    private void setStressLevel() {
+    private void setStressLevel(Integer recovery) {
+        if (recovery > 90) {
+            binding.stresslevell.setBackgroundColor(ContextCompat.getColor(mContext, R.color.Healthy));
+        } else if (recovery >= 75 && recovery <= 89) {
+            binding.stresslevell.setBackgroundColor(ContextCompat.getColor(mContext, R.color.Borderline));
+        } else if (recovery < 75) {
+            binding.stresslevell.setBackgroundColor(ContextCompat.getColor(mContext, R.color.Unhealthy));
+        }
     }
 
     private void setBloodpressureIndicator(@NotNull BloodPressure bloodPressure) {
