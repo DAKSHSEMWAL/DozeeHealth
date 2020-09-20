@@ -2,8 +2,8 @@ package com.motishare.dozeecodeforhealth.interfaces;
 
 public interface Constants {
 
-    /*String baseURL = "https://6c829492-4c01-4a59-bbb3-801076aa173d.mock.pstmn.io/api/";*/
-    String baseURL = "https://f2a8b123-adbb-4c6a-beba-f3d3d42eea86.mock.pstmn.io/api/";
+    String baseURL = "https://6c829492-4c01-4a59-bbb3-801076aa173d.mock.pstmn.io/api/";
+    /*String baseURL = "https://f2a8b123-adbb-4c6a-beba-f3d3d42eea86.mock.pstmn.io/api/";*/
 
 
 

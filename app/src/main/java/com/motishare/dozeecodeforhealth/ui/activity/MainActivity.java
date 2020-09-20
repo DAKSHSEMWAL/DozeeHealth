@@ -24,7 +24,9 @@ import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 import androidx.databinding.DataBindingUtil;
 
+import com.github.mikephil.charting.data.LineDataSet;
 import com.google.gson.reflect.TypeToken;
+import com.itextpdf.text.pdf.parser.LineDashPattern;
 import com.motishare.dozeecodeforhealth.R;
 import com.motishare.dozeecodeforhealth.core.BaseActivity;
 import com.motishare.dozeecodeforhealth.databinding.ActivityMainBinding;
@@ -34,6 +36,8 @@ import com.motishare.dozeecodeforhealth.databinding.DialogBreathrateDetailsBindi
 import com.motishare.dozeecodeforhealth.databinding.DialogHeartDetailsBinding;
 import com.motishare.dozeecodeforhealth.databinding.DialogSleepscoreDetailsBinding;
 import com.motishare.dozeecodeforhealth.databinding.DialogStresslevelDetailsBinding;
+import com.motishare.dozeecodeforhealth.databinding.DialogWeeklyDetailsBinding;
+import com.motishare.dozeecodeforhealth.model.BP;
 import com.motishare.dozeecodeforhealth.model.BloodPressure;
 import com.motishare.dozeecodeforhealth.model.QuestionModel;
 import com.motishare.dozeecodeforhealth.model.UserData;
@@ -45,6 +49,9 @@ import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
 import java.lang.reflect.Type;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -72,7 +79,11 @@ public class MainActivity extends BaseActivity {
     DialogBloodpressureDetailsBinding dialogBloodpressureDetailsBinding;
     DialogSleepscoreDetailsBinding dialogSleepscoreDetailsBinding;
     DialogStresslevelDetailsBinding dialogStresslevelDetailsBinding;
+    DialogWeeklyDetailsBinding dialogWeeklyDetailsBinding;
     QuestionModel questionModel;
+    int c=0;
+    int selected=0;
+    String current;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,18 +101,25 @@ public class MainActivity extends BaseActivity {
         getQuestion();
     }
 
-    private void setData() {
+    private void setData(@NotNull String currentdate) {
         Date c = Calendar.getInstance().getTime();
         String today = getDate(DATE20, DATE4, c.toString());
-        int c2 = 0;
+        current=currentdate;
+        if(currentdate.equals(today)) {
+            Log.e("Hi","Here1");
+            binding.todaydate.setText(String.format("Today - %s", currentdate));
+            binding.next.setVisibility(View.GONE);
+        }
+        else {
+            Log.e("Hi","Here2");
+            binding.todaydate.setText(String.format("%s", currentdate));
+            binding.next.setVisibility(View.VISIBLE);
+        }
         for (UserData a : userData) {
-            c2++;
-            Log.e("UserData", a.toString());
             if (a.getTime() != null) {
                 Date c1 = new Date(Long.parseLong(a.getTime()) * 1000);
                 String date = getDate(DATE20, DATE4, c1.toString());
-                Log.e("Date", date + " " + today);
-                if (!today.equals(date)) {
+                if (!currentdate.equals(date)) {
                     binding.stresslevel.setText("-");
                     binding.heartRatetext.setText("-");
                     binding.breathRatetext.setText("-");
@@ -111,15 +129,13 @@ public class MainActivity extends BaseActivity {
                     binding.sleepratetext.setText("-");
 
                 } else {
-                    binding.stresslevel.setText(String.format(Locale.getDefault(), "%d", a.getRecovery()));
-                    binding.breathRatetext.setText(String.format(Locale.getDefault(), "%d", a.getBreathRate()));
-                    binding.o2text.setText(String.format(Locale.getDefault(), "%d", a.getO2()));
-                    binding.sleepratetext.setText(String.format(Locale.getDefault(), "%d", a.getSleepscore()));
-                    if (a.getBloodPressure() != null) {
-                        setBloodpressureIndicator(a.getBloodPressure());
-                        binding.Diastole.setText(String.format(Locale.getDefault(), "%d", a.getBloodPressure().getDiastole()));
-                        binding.Systole.setText(String.format(Locale.getDefault(), "%d", a.getBloodPressure().getSystole()));
-                    } else {
+                    Log.e("Hi",a.toString());
+                    if (a.getBP() != null) {
+                        setBloodpressureIndicator(a.getBP());
+                        binding.Diastole.setText(String.format(Locale.getDefault(), "%d", a.getBP().getDiastole()));
+                        binding.Systole.setText(String.format(Locale.getDefault(), "%d", a.getBP().getSystole()));
+                    }
+                    else {
                         binding.Diastole.setText("-");
                         binding.Systole.setText("-");
                     }
@@ -142,11 +158,13 @@ public class MainActivity extends BaseActivity {
                         binding.stresslevel.setText("-");
                     }
                     if (a.getSleepscore() != null && a.getSleepscore() > 0) {
+                        binding.sleepratetext.setText(String.format(Locale.getDefault(), "%d", a.getSleepscore()));
                         setSleepScoreLevel(a.getSleepscore());
                     } else {
                         binding.sleepratetext.setText("-");
                     }
                     if (a.getO2() != null && a.getO2() > 0) {
+                        binding.o2text.setText(String.format(Locale.getDefault(), "%d", a.getO2()));
                         setOxygen(a.getO2());
                     } else {
                         binding.sleepratetext.setText("-");
@@ -195,7 +213,7 @@ public class MainActivity extends BaseActivity {
     }
 
     private void setHeartRateLevel(Integer heartRate) {
-        if (heartRate < 45 && heartRate > 75) {
+        if (heartRate < 45 || heartRate > 75) {
             binding.heartratelevel.setBackgroundColor(ContextCompat.getColor(mContext, R.color.Unhealthy));
         } else if ((heartRate >= 45 && heartRate <= 54) || (heartRate >= 66 && heartRate <= 75)) {
             binding.heartratelevel.setBackgroundColor(ContextCompat.getColor(mContext, R.color.Borderline));
@@ -214,14 +232,18 @@ public class MainActivity extends BaseActivity {
         }
     }
 
-    private void setBloodpressureIndicator(@NotNull BloodPressure bloodPressure) {
-        if (bloodPressure.getSystole() <= 130 && bloodPressure.getDiastole() <= 80) {
+    private void setBloodpressureIndicator(@NotNull BP bloodPressure) {
+        Log.e("",""+bloodPressure.getSystole());
+        if(bloodPressure.getSystole() < 130 || bloodPressure.getDiastole() < 80)
+        {
             binding.bloodpressurelevel.setBackgroundColor(ContextCompat.getColor(mContext, R.color.Healthy));
-        } else if (bloodPressure.getSystole() > 130 && bloodPressure.getSystole() < 140 && bloodPressure.getDiastole() > 80 && bloodPressure.getDiastole() < 90) {
+        }
+        else if ((bloodPressure.getSystole() > 130 && bloodPressure.getSystole() < 140) && (bloodPressure.getDiastole() > 80 && bloodPressure.getDiastole() < 90)) {
             binding.bloodpressurelevel.setBackgroundColor(ContextCompat.getColor(mContext, R.color.Borderline));
-        } else if (bloodPressure.getSystole() >= 140 && bloodPressure.getDiastole() <= 90) {
+        }
+        else if (bloodPressure.getSystole() >= 140 && bloodPressure.getDiastole() <= 90) {
             binding.bloodpressurelevel.setBackgroundColor(ContextCompat.getColor(mContext, R.color.Unhealthy));
-        } else {
+        }else {
             Log.e("Hi", "Ho4" + (bloodPressure.getSystole() > 130 && bloodPressure.getSystole() < 140));
         }
     }
@@ -254,8 +276,36 @@ public class MainActivity extends BaseActivity {
             Call();
             return false;
         });
+        binding.daily.setOnClickListener(v->{
+            selected=0;
+            binding.daily.setBackground(ContextCompat.getDrawable(mContext,R.drawable.tab_background));
+            binding.weekly.setBackground(null);
+            binding.monthly.setBackground(null);
+        });
+        binding.weekly.setOnClickListener(v->{
+            selected=1;
+            binding.daily.setBackground(null);
+            binding.weekly.setBackground(ContextCompat.getDrawable(mContext,R.drawable.tab_background));
+            binding.monthly.setBackground(null);
+        });
+        binding.monthly.setOnClickListener(v->{
+            selected=2;
+            binding.daily.setBackground(null);
+            binding.weekly.setBackground(null);
+            binding.monthly.setBackground(ContextCompat.getDrawable(mContext,R.drawable.tab_background));
+        });
         binding.more1.setOnClickListener(v -> {
-            showHeartDialog();
+            if(selected==0) {
+                showHeartDialog();
+            }
+            else if(selected==1)
+            {
+                showHeartWeekDialog();
+            }
+            else
+            {
+
+            }
         });
         binding.more2.setOnClickListener(v -> {
             showBreathDialog();
@@ -272,12 +322,29 @@ public class MainActivity extends BaseActivity {
         binding.more6.setOnClickListener(v -> {
             showStressLevel();
         });
+        binding.next.setOnClickListener(v->{
+            c=c+1;
+            Calendar calendar = Calendar.getInstance();
+            /*Log.e("Current Date = " ,"" + calendar.getTime());*/
+            calendar.add(Calendar.DATE, c);
+            /*Log.e("Updated Date = ","" + calendar.getTime());*/
+            Date date = new Date(calendar.getTimeInMillis());
+            String today = getDate(DATE20, DATE4, calendar.getTime().toString());
+            setData(today);
+        });
+        binding.prev.setOnClickListener(v->{
+            c=c+1;
+            Calendar calendar = Calendar.getInstance();
+            /*Log.e("Current Date = " ,"" + calendar.getTime());*/
+            calendar.add(Calendar.DATE, -c);
+            /*Log.e("Updated Date = ","" + calendar.getTime());*/
+            String today = getDate(DATE20, DATE4, calendar.getTime().toString());
+            setData(today);
+        });
     }
 
     private void initView() {
         setToolbarWithBackAndTitle(mContext, "Risi Shah", false, 0);
-        Date c = Calendar.getInstance().getTime();
-        binding.todaydate.setText(String.format("Today - %s", getDate(DATE20, DATE4, c.toString())));
     }
 
     private void getData() {
@@ -364,7 +431,9 @@ public class MainActivity extends BaseActivity {
                     if (response.code() == 200) {
                         assert response.body() != null;
                         userData = gson.fromJson(response.body().string(), type);
-                        setData();
+                        Date c = Calendar.getInstance().getTime();
+                        String today = getDate(DATE20, DATE4, c.toString());
+                        setData(today);
                     } else {
                         Dialogs.notifyalert(getString(R.string.server_error_msg), "OK", mContext, false, ok -> {
 
@@ -492,6 +561,43 @@ public class MainActivity extends BaseActivity {
         Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
 
         dialog.show();
+    }
+
+    private void showHeartWeekDialog() {
+
+        final Dialog dialog = new Dialog(mContext, R.style.MyAlertDialogStyle);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialogWeeklyDetailsBinding = DataBindingUtil.inflate(LayoutInflater.from(dialog.getContext()), R.layout.dialog_weekly_details, null, false);
+        Dali.create(mContext).load(binding.getRoot()).blurRadius(17).into(dialogWeeklyDetailsBinding.imgBg);
+        dialog.setContentView(dialogWeeklyDetailsBinding.getRoot());
+        setLineData();
+        /*dialogWeeklyDetailsBinding.knowMore.setOnClickListener(v -> {
+            revealShowImage(dialogWeeklyDetailsBinding.getRoot(), false, dialog);
+        });*/
+        dialogWeeklyDetailsBinding.drop.setOnClickListener(v -> {
+            revealShowImage(dialogWeeklyDetailsBinding.getRoot(), false, dialog);
+        });
+
+        dialog.setOnShowListener(dialogInterface -> revealShowImage(dialogWeeklyDetailsBinding.getRoot(), true, null));
+
+        dialog.setOnKeyListener((dialogInterface, i, keyEvent) -> {
+            if (i == KeyEvent.KEYCODE_BACK) {
+
+                revealShowImage(dialogWeeklyDetailsBinding.getRoot(), false, dialog);
+                return true;
+            }
+
+            return false;
+        });
+
+
+        Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+
+        dialog.show();
+    }
+
+    private void setLineData() {
+
     }
 
     private void showBreathDialog() {
