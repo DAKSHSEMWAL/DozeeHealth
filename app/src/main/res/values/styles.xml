@@ -51,4 +51,13 @@
         <item name="android:letterSpacing">0.04</item>
         <item name="android:lineSpacingExtra">@dimen/_7sdp</item>
     </style>
+
+
+    <style name="MyAlertDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
+
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowBackground">@null</item>
+        <item name="android:windowTranslucentStatus">true</item>
+    </style>
 </resources>

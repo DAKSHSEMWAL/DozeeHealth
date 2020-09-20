@@ -1,11 +1,20 @@
 package com.motishare.dozeecodeforhealth.ui.activity;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewAnimationUtils;
+import android.view.Window;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -19,6 +28,11 @@ import com.google.gson.reflect.TypeToken;
 import com.motishare.dozeecodeforhealth.R;
 import com.motishare.dozeecodeforhealth.core.BaseActivity;
 import com.motishare.dozeecodeforhealth.databinding.ActivityMainBinding;
+import com.motishare.dozeecodeforhealth.databinding.DialogBloodoxygenDetailsBinding;
+import com.motishare.dozeecodeforhealth.databinding.DialogBloodpressureDetailsBinding;
+import com.motishare.dozeecodeforhealth.databinding.DialogBreathrateDetailsBinding;
+import com.motishare.dozeecodeforhealth.databinding.DialogHeartDetailsBinding;
+import com.motishare.dozeecodeforhealth.databinding.DialogSleepscoreDetailsBinding;
 import com.motishare.dozeecodeforhealth.model.BloodPressure;
 import com.motishare.dozeecodeforhealth.model.QuestionModel;
 import com.motishare.dozeecodeforhealth.model.UserData;
@@ -35,7 +49,9 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 
+import at.favre.lib.dali.Dali;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -49,6 +65,11 @@ public class MainActivity extends BaseActivity {
     UserModel userModel;
     List<UserData> userData = new ArrayList<>();
     public ActivityMainBinding binding;
+    DialogHeartDetailsBinding dialogHeartDetailsBinding;
+    DialogBreathrateDetailsBinding dialogBreathrateDetailsBinding;
+    DialogBloodoxygenDetailsBinding dialogBloodoxygenDetailsBinding;
+    DialogBloodpressureDetailsBinding dialogBloodpressureDetailsBinding;
+    DialogSleepscoreDetailsBinding dialogSleepscoreDetailsBinding;
     QuestionModel questionModel;
 
     @Override
@@ -59,12 +80,12 @@ public class MainActivity extends BaseActivity {
         getData();
         initView();
         getDetails();
-        getQuestion();
         implementListeners();
     }
 
     private void setViews() {
         binding.mToolbar.titleTv.setText(userModel.getName());
+        getQuestion();
     }
 
     private void setData() {
@@ -134,12 +155,11 @@ public class MainActivity extends BaseActivity {
     }
 
     private void setBreathrate(Integer breathRate) {
-        if(breathRate<8||breathRate>15){
+        if (breathRate < 8 || breathRate > 15) {
             binding.breathratelevel.setBackgroundColor(ContextCompat.getColor(mContext, R.color.Unhealthy));
-        }
-        else if(breathRate <= 12){
+        } else if (breathRate <= 12) {
             binding.breathratelevel.setBackgroundColor(ContextCompat.getColor(mContext, R.color.Healthy));
-        }else {
+        } else {
             binding.breathratelevel.setBackgroundColor(ContextCompat.getColor(mContext, R.color.Borderline));
         }
     }
@@ -167,6 +187,9 @@ public class MainActivity extends BaseActivity {
     private void setQuestion() {
         binding.questiona.setText(String.format("%s, %s. %s", questionModel.getGreeting(), userModel.getName().substring(0, userModel.getName().indexOf(' ')), questionModel.getQuestion()));
         /*binding.questiona.setText(String.format("%s, %s.%s", questionModel.getGreeting(), userModel.getName(), questionModel.getQuestion()));*/
+        binding.fresh.setText(questionModel.getAnswers().get(0));
+        binding.good.setText(questionModel.getAnswers().get(1));
+        binding.tired.setText(questionModel.getAnswers().get(2));
     }
 
     private void setHeartRateLevel(Integer heartRate) {
@@ -228,6 +251,24 @@ public class MainActivity extends BaseActivity {
         call.setOnMenuItemClickListener(menuItem1 -> {
             Call();
             return false;
+        });
+        binding.more1.setOnClickListener(v -> {
+            showHeartDialog();
+        });
+        binding.more2.setOnClickListener(v -> {
+            showBreathDialog();
+        });
+        binding.more3.setOnClickListener(v -> {
+            showBloodOxygen();
+        });
+        binding.more4.setOnClickListener(v -> {
+            showBloodPressure();
+        });
+        binding.more5.setOnClickListener(v -> {
+            showSleepRate();
+        });
+        binding.more6.setOnClickListener(v -> {
+            showBreathDialog();
         });
     }
 
@@ -377,6 +418,206 @@ public class MainActivity extends BaseActivity {
             Toast.makeText(this, s.getMessage(), Toast.LENGTH_LONG)
                     .show();
         }
+    }
+
+    private void revealShowImage(@NotNull View dialogView, boolean b, final Dialog dialog) {
+
+        final View view = dialogView.findViewById(R.id.dialog);
+
+        int w = view.getWidth();
+        int h = view.getHeight();
+
+        int endRadius = (int) Math.hypot(w, h);
+
+        int cx = (int) (binding.getRoot().getX() + (binding.getRoot().getWidth() / 2));
+        int cy = (int) (binding.getRoot().getY() + (binding.getRoot().getHeight()));
+
+
+        if (b) {
+            Animator revealAnimator = ViewAnimationUtils.createCircularReveal(view, cx, cy, 0, endRadius);
+
+            view.setVisibility(View.VISIBLE);
+            revealAnimator.setDuration(500);
+            revealAnimator.start();
+
+        } else {
+
+            Animator anim =
+                    ViewAnimationUtils.createCircularReveal(view, cx, cy, endRadius, 0);
+
+            anim.addListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animation) {
+                    super.onAnimationEnd(animation);
+                    dialog.dismiss();
+                    view.setVisibility(View.INVISIBLE);
+
+                }
+            });
+            anim.setDuration(500);
+            anim.start();
+        }
+
+    }
+
+    private void showHeartDialog() {
+
+        final Dialog dialog = new Dialog(mContext, R.style.MyAlertDialogStyle);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialogHeartDetailsBinding = DataBindingUtil.inflate(LayoutInflater.from(dialog.getContext()), R.layout.dialog_heart_details, null, false);
+        Dali.create(mContext).load(binding.getRoot()).blurRadius(17).into(dialogHeartDetailsBinding.imgBg);
+        dialog.setContentView(dialogHeartDetailsBinding.getRoot());
+        dialogHeartDetailsBinding.knowMore.setOnClickListener(v -> {
+            revealShowImage(dialogHeartDetailsBinding.getRoot(), false, dialog);
+        });
+        dialogHeartDetailsBinding.drop.setOnClickListener(v -> {
+            revealShowImage(dialogHeartDetailsBinding.getRoot(), false, dialog);
+        });
+
+        dialog.setOnShowListener(dialogInterface -> revealShowImage(dialogHeartDetailsBinding.getRoot(), true, null));
+
+        dialog.setOnKeyListener((dialogInterface, i, keyEvent) -> {
+            if (i == KeyEvent.KEYCODE_BACK) {
+
+                revealShowImage(dialogHeartDetailsBinding.getRoot(), false, dialog);
+                return true;
+            }
+
+            return false;
+        });
+
+
+        Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+
+        dialog.show();
+    }
+
+    private void showBreathDialog() {
+
+        final Dialog dialog = new Dialog(mContext, R.style.MyAlertDialogStyle);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialogBreathrateDetailsBinding = DataBindingUtil.inflate(LayoutInflater.from(dialog.getContext()), R.layout.dialog_breathrate_details, null, false);
+        Dali.create(mContext).load(binding.getRoot()).blurRadius(17).into(dialogBreathrateDetailsBinding.imgBg);
+        dialog.setContentView(dialogBreathrateDetailsBinding.getRoot());
+        dialogBreathrateDetailsBinding.knowMore.setOnClickListener(v -> {
+            revealShowImage(dialogBreathrateDetailsBinding.getRoot(), false, dialog);
+        });
+        dialogBreathrateDetailsBinding.drop.setOnClickListener(v -> {
+            revealShowImage(dialogBreathrateDetailsBinding.getRoot(), false, dialog);
+        });
+
+        dialog.setOnShowListener(dialogInterface -> revealShowImage(dialogBreathrateDetailsBinding.getRoot(), true, null));
+
+        dialog.setOnKeyListener((dialogInterface, i, keyEvent) -> {
+            if (i == KeyEvent.KEYCODE_BACK) {
+
+                revealShowImage(dialogBreathrateDetailsBinding.getRoot(), false, dialog);
+                return true;
+            }
+
+            return false;
+        });
+
+
+        Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+
+        dialog.show();
+    }
+
+    private void showBloodOxygen() {
+
+        final Dialog dialog = new Dialog(mContext, R.style.MyAlertDialogStyle);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialogBloodoxygenDetailsBinding = DataBindingUtil.inflate(LayoutInflater.from(dialog.getContext()), R.layout.dialog_bloodoxygen_details, null, false);
+        Dali.create(mContext).load(binding.getRoot()).blurRadius(17).into(dialogBloodoxygenDetailsBinding.imgBg);
+        dialog.setContentView(dialogBloodoxygenDetailsBinding.getRoot());
+        dialogBloodoxygenDetailsBinding.knowMore.setOnClickListener(v -> {
+            revealShowImage(dialogBloodoxygenDetailsBinding.getRoot(), false, dialog);
+        });
+        dialogBloodoxygenDetailsBinding.drop.setOnClickListener(v -> {
+            revealShowImage(dialogBloodoxygenDetailsBinding.getRoot(), false, dialog);
+        });
+
+        dialog.setOnShowListener(dialogInterface -> revealShowImage(dialogBloodoxygenDetailsBinding.getRoot(), true, null));
+
+        dialog.setOnKeyListener((dialogInterface, i, keyEvent) -> {
+            if (i == KeyEvent.KEYCODE_BACK) {
+
+                revealShowImage(dialogBloodoxygenDetailsBinding.getRoot(), false, dialog);
+                return true;
+            }
+
+            return false;
+        });
+
+
+        Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+
+        dialog.show();
+    }
+
+    private void showBloodPressure() {
+
+        final Dialog dialog = new Dialog(mContext, R.style.MyAlertDialogStyle);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialogBloodpressureDetailsBinding = DataBindingUtil.inflate(LayoutInflater.from(dialog.getContext()), R.layout.dialog_bloodpressure_details, null, false);
+        Dali.create(mContext).load(binding.getRoot()).blurRadius(17).into(dialogBloodpressureDetailsBinding.imgBg);
+        dialog.setContentView(dialogBloodpressureDetailsBinding.getRoot());
+        dialogBloodpressureDetailsBinding.knowMore.setOnClickListener(v -> {
+            revealShowImage(dialogBloodpressureDetailsBinding.getRoot(), false, dialog);
+        });
+        dialogBloodpressureDetailsBinding.drop.setOnClickListener(v -> {
+            revealShowImage(dialogBloodpressureDetailsBinding.getRoot(), false, dialog);
+        });
+
+        dialog.setOnShowListener(dialogInterface -> revealShowImage(dialogBloodpressureDetailsBinding.getRoot(), true, null));
+
+        dialog.setOnKeyListener((dialogInterface, i, keyEvent) -> {
+            if (i == KeyEvent.KEYCODE_BACK) {
+
+                revealShowImage(dialogBloodpressureDetailsBinding.getRoot(), false, dialog);
+                return true;
+            }
+
+            return false;
+        });
+
+
+        Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+
+        dialog.show();
+    }
+
+    private void showSleepRate() {
+
+        final Dialog dialog = new Dialog(mContext, R.style.MyAlertDialogStyle);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialogSleepscoreDetailsBinding = DataBindingUtil.inflate(LayoutInflater.from(dialog.getContext()), R.layout.dialog_sleepscore_details, null, false);
+        Dali.create(mContext).load(binding.getRoot()).blurRadius(17).into(dialogSleepscoreDetailsBinding.imgBg);
+        dialog.setContentView(dialogSleepscoreDetailsBinding.getRoot());
+        dialogSleepscoreDetailsBinding.knowMore.setOnClickListener(v -> {
+            revealShowImage(dialogSleepscoreDetailsBinding.getRoot(), false, dialog);
+        });
+        dialogSleepscoreDetailsBinding.drop.setOnClickListener(v -> {
+            revealShowImage(dialogSleepscoreDetailsBinding.getRoot(), false, dialog);
+        });
+
+        dialog.setOnShowListener(dialogInterface -> revealShowImage(dialogSleepscoreDetailsBinding.getRoot(), true, null));
+
+        dialog.setOnKeyListener((dialogInterface, i, keyEvent) -> {
+            if (i == KeyEvent.KEYCODE_BACK) {
+
+                revealShowImage(dialogSleepscoreDetailsBinding.getRoot(), false, dialog);
+                return true;
+            }
+
+            return false;
+        });
+
+
+        Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+
+        dialog.show();
     }
 
 }

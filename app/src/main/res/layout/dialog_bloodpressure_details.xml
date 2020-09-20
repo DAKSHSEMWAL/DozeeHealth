@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/dialog"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/transparent">
+
+        <ImageView
+            android:id="@+id/imgBg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:foregroundGravity="center"
+            android:padding="@dimen/_15sdp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/view1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/_23sdp"
+                android:layout_centerInParent="true"
+                android:background="@drawable/dialog_background"
+                android:foregroundGravity="center"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/_11sdp"
+                    android:textColor="@color/White"
+                    android:fontFamily="@font/nunito_semibold"
+                    android:text="@string/understand_blood_pressure"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+                <ImageView
+                    android:id="@+id/drop"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_dropdown1"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    app:tint="@color/White"
+                    android:padding="@dimen/_5sdp"
+                    app:layout_constraintStart_toEndOf="@id/title"
+                    app:layout_constraintTop_toTopOf="@id/title"
+                    app:layout_constraintBottom_toBottomOf="@id/title"/>
+
+                <TextView
+                    android:id="@+id/details"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/_8sdp"
+                    android:layout_marginTop="@dimen/_23sdp"
+                    android:textColor="@color/White"
+                    android:fontFamily="@font/nunito_regular"
+                    android:text="@string/blood_pressure_bp_is_the_pressure_of_circulating_blood_against_the_walls_of_blood_vessels_most_of_this_pressure_results_from_the_heart_pumping_blood_through_the_circulatory_system_when_used_without_qualification_the_term_blood_pressure_refers_to_the_pressure_in_the_large_arteries_blood_pressure_is_usually_expressed_in_terms_of_the_systolic_pressure_maximum_pressure_during_one_heartbeat_over_diastolic_pressure_minimum_pressure_between_two_heartbeats_in_the_cardiac_cycle_it_is_measured_in_millimeters_of_mercury_mmhg_above_the_surrounding_atmospheric_pressure"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/title"/>
+
+                <TextView
+                    android:id="@+id/range"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/_8sdp"
+                    android:layout_marginTop="@dimen/_23sdp"
+                    android:fontFamily="@font/nunito_regular"
+                    android:textColor="@color/White"
+                    android:text="@string/healthy_range_naverage_systolic_130_mmhg_naverage_diastolic_80_mmhg_n_n_nborderline_range_naverage_systolic_130_140_mmhg_naverage_diastolic_80_90_mmhg_n_n_nunhealthy_range_naverage_systolic_140_mmhg_naverage_diastolic_90_mmhg"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/details"/>
+
+                <TextView
+                    android:id="@+id/knowMore"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_23sdp"
+                    android:background="@drawable/button_background_white"
+                    android:fontFamily="@font/nunito_bold"
+                    android:paddingStart="@dimen/_14sdp"
+                    android:paddingTop="@dimen/_5sdp"
+                    android:paddingEnd="@dimen/_14sdp"
+                    android:paddingBottom="@dimen/_5sdp"
+                    android:text="@string/knowmore"
+                    android:textColor="@color/DeepCove"
+                    android:textSize="@dimen/_8sdp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/range" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </RelativeLayout>
+</layout>
