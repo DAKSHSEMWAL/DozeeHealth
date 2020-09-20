@@ -7,8 +7,11 @@
 
 
     <color name="Ebony">#0E0D1D</color>
+    <color name="DeepCove">#050645</color>
     <color name="Ebonyopaueq">#660E0D1D</color>
     <color name="White">#FFFFFF</color>
+    <color name="White1">#FEFEFE</color>
+    <color name="White1opaque">#59FEFEFE</color>
     <color name="Whiteopaque">#28FFFFFF</color>
     <color name="CodGray">#0F0F0F</color>
     <color name="Scampi">#595BAE</color>
@@ -16,4 +19,7 @@
     <color name="ShipCove">#7276BF</color>
     <color name="Seagull">#7dbae1</color>
     <color name="Valhalla">#1C184E</color>
+    <color name="PortGore">#1F2142</color>
+    <color name="Merlot">#871c23</color>
+
 </resources>

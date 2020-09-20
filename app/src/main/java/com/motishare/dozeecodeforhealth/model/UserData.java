@@ -27,7 +27,7 @@ public class UserData {
     private Integer sleepscore;
     @SerializedName("time")
     @Expose
-    private Integer time;
+    private String time;
     @SerializedName("BP")
     @Expose
     private BP bP;
@@ -80,11 +80,11 @@ public class UserData {
         this.sleepscore = sleepscore;
     }
 
-    public Integer getTime() {
+    public String getTime() {
         return time;
     }
 
-    public void setTime(Integer time) {
+    public void setTime(String time) {
         this.time = time;
     }
 
@@ -96,4 +96,17 @@ public class UserData {
         this.bP = bP;
     }
 
+    @Override
+    public String toString() {
+        return "UserData{" +
+                "heartRate=" + heartRate +
+                ", breathRate=" + breathRate +
+                ", o2=" + o2 +
+                ", bloodPressure=" + bloodPressure +
+                ", recovery=" + recovery +
+                ", sleepscore=" + sleepscore +
+                ", time=" + time +
+                ", bP=" + bP +
+                '}';
+    }
 }

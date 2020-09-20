@@ -29,4 +29,11 @@ public class BloodPressure {
         this.diastole = diastole;
     }
 
+    @Override
+    public String toString() {
+        return "BloodPressure{" +
+                "systole=" + systole +
+                ", diastole=" + diastole +
+                '}';
+    }
 }

@@ -10,4 +10,15 @@
     <string name="monthly">Monthly</string>
     <string name="whatsapp">WhatsApp</string>
     <string name="vitals">Vitals</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="fresh">Fresh</string>
+    <string name="hi_rishi_how_are_you_feeling_this_morning">Hi, Rishi. How are you feeling this morning ?</string>
+    <string name="good">Good</string>
+    <string name="tired">Tired</string>
+    <string name="share_title">Share Your Record</string>
+    <string name="okay">OK</string>
+    <string name="ok">OK</string>
+    <string name="server_error_msg">Server isn\'t responding. Please try after some time.</string>
+
 </resources>

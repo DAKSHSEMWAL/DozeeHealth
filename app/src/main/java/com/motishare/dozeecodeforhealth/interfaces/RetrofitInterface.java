@@ -19,11 +19,9 @@ public interface RetrofitInterface {
 
     //Authentication Apis
 
-    @FormUrlEncoded
     @GET("user/data")
     Call<ResponseBody> userdata();
 
-    @FormUrlEncoded
     @GET("user/details")
     Call<ResponseBody> userdetails();
 
