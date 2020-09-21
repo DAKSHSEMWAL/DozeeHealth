@@ -327,19 +327,14 @@ public class MainActivity extends BaseActivity {
         binding.next.setOnClickListener(v->{
             c=c+1;
             Calendar calendar = Calendar.getInstance();
-            /*Log.e("Current Date = " ,"" + calendar.getTime());*/
             calendar.add(Calendar.DATE, c);
-            /*Log.e("Updated Date = ","" + calendar.getTime());*/
-            Date date = new Date(calendar.getTimeInMillis());
             String today = getDate(DATE20, DATE4, calendar.getTime().toString());
             setData(today);
         });
         binding.prev.setOnClickListener(v->{
-            c=c+1;
+            c=c-1;
             Calendar calendar = Calendar.getInstance();
-            /*Log.e("Current Date = " ,"" + calendar.getTime());*/
-            calendar.add(Calendar.DATE, -c);
-            /*Log.e("Updated Date = ","" + calendar.getTime());*/
+            calendar.add(Calendar.DATE, c);
             String today = getDate(DATE20, DATE4, calendar.getTime().toString());
             setData(today);
         });
@@ -776,9 +771,11 @@ public class MainActivity extends BaseActivity {
         dialogProfileDetailsBinding = DataBindingUtil.inflate(LayoutInflater.from(dialog.getContext()), R.layout.dialog_profile_details, null, false);
         Dali.create(mContext).load(binding.getRoot()).blurRadius(17).into(dialogProfileDetailsBinding.imgBg);
         dialog.setContentView(dialogProfileDetailsBinding.getRoot());
-        dialogProfileDetailsBinding.dateofbirth.setText(userModel.getDob());
-        dialogProfileDetailsBinding.username.setText(userModel.getName());
-        dialogProfileDetailsBinding.mobile.setText(String.format("%s-%s", userModel.getPhone().getCountryCode(), userModel.getPhone().getNumber()));
+        if(userModel!=null) {
+            dialogProfileDetailsBinding.dateofbirth.setText(userModel.getDob());
+            dialogProfileDetailsBinding.username.setText(userModel.getName());
+            dialogProfileDetailsBinding.mobile.setText(String.format("%s-%s", userModel.getPhone().getCountryCode(), userModel.getPhone().getNumber()));
+        }
         dialogProfileDetailsBinding.drop.setOnClickListener(v -> {
             revealShowImage(dialogProfileDetailsBinding.getRoot(), false, dialog);
         });
