@@ -773,7 +773,7 @@ public class MainActivity extends BaseActivity {
 
         final Dialog dialog = new Dialog(mContext, R.style.MyAlertDialogStyle);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialogProfileDetailsBinding = DataBindingUtil.inflate(LayoutInflater.from(dialog.getContext()), R.layout.dialog_stresslevel_details, null, false);
+        dialogProfileDetailsBinding = DataBindingUtil.inflate(LayoutInflater.from(dialog.getContext()), R.layout.dialog_profile_details, null, false);
         Dali.create(mContext).load(binding.getRoot()).blurRadius(17).into(dialogProfileDetailsBinding.imgBg);
         dialog.setContentView(dialogProfileDetailsBinding.getRoot());
         dialogProfileDetailsBinding.dateofbirth.setText(userModel.getDob());
