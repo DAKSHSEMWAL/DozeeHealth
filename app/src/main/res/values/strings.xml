@@ -50,5 +50,9 @@
     <string name="_3_times_out_of_healthy_range">3 times out of healthy range</string>
     <string name="_70_to_80_healthy_range">70 to 80 Healthy Range</string>
     <string name="_14_20_sep_2020">14 - 20 Sep 2020</string>
+    <string name="dash">-</string>
+    <string name="my_profile">My Profile</string>
+    <string name="name">Name:- </string>
+    <string name="date_of_birth">Date of Birth :- </string>
 
 </resources>

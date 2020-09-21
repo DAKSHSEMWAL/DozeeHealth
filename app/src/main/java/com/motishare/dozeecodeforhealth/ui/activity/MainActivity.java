@@ -34,6 +34,7 @@ import com.motishare.dozeecodeforhealth.databinding.DialogBloodoxygenDetailsBind
 import com.motishare.dozeecodeforhealth.databinding.DialogBloodpressureDetailsBinding;
 import com.motishare.dozeecodeforhealth.databinding.DialogBreathrateDetailsBinding;
 import com.motishare.dozeecodeforhealth.databinding.DialogHeartDetailsBinding;
+import com.motishare.dozeecodeforhealth.databinding.DialogProfileDetailsBinding;
 import com.motishare.dozeecodeforhealth.databinding.DialogSleepscoreDetailsBinding;
 import com.motishare.dozeecodeforhealth.databinding.DialogStresslevelDetailsBinding;
 import com.motishare.dozeecodeforhealth.databinding.DialogWeeklyDetailsBinding;
@@ -80,6 +81,7 @@ public class MainActivity extends BaseActivity {
     DialogSleepscoreDetailsBinding dialogSleepscoreDetailsBinding;
     DialogStresslevelDetailsBinding dialogStresslevelDetailsBinding;
     DialogWeeklyDetailsBinding dialogWeeklyDetailsBinding;
+    DialogProfileDetailsBinding dialogProfileDetailsBinding;
     QuestionModel questionModel;
     int c=0;
     int selected=0;
@@ -341,10 +343,17 @@ public class MainActivity extends BaseActivity {
             String today = getDate(DATE20, DATE4, calendar.getTime().toString());
             setData(today);
         });
+        binding.mToolbar.dropdownMenu.setOnClickListener(v->{
+            showProfile();
+        });
     }
 
     private void initView() {
-        setToolbarWithBackAndTitle(mContext, "Risi Shah", false, 0);
+        setToolbarWithBackAndTitle(mContext, "", false, 0);
+        Date c = Calendar.getInstance().getTime();
+        String today = getDate(DATE20, DATE4, c.toString());
+        binding.todaydate.setText(String.format("Today - %s", today));
+        binding.next.setVisibility(View.GONE);
     }
 
     private void getData() {
@@ -748,6 +757,38 @@ public class MainActivity extends BaseActivity {
             if (i == KeyEvent.KEYCODE_BACK) {
 
                 revealShowImage(dialogStresslevelDetailsBinding.getRoot(), false, dialog);
+                return true;
+            }
+
+            return false;
+        });
+
+
+        Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+
+        dialog.show();
+    }
+
+    private void showProfile() {
+
+        final Dialog dialog = new Dialog(mContext, R.style.MyAlertDialogStyle);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialogProfileDetailsBinding = DataBindingUtil.inflate(LayoutInflater.from(dialog.getContext()), R.layout.dialog_stresslevel_details, null, false);
+        Dali.create(mContext).load(binding.getRoot()).blurRadius(17).into(dialogProfileDetailsBinding.imgBg);
+        dialog.setContentView(dialogProfileDetailsBinding.getRoot());
+        dialogProfileDetailsBinding.dateofbirth.setText(userModel.getDob());
+        dialogProfileDetailsBinding.username.setText(userModel.getName());
+        dialogProfileDetailsBinding.mobile.setText(String.format("%s-%s", userModel.getPhone().getCountryCode(), userModel.getPhone().getNumber()));
+        dialogProfileDetailsBinding.drop.setOnClickListener(v -> {
+            revealShowImage(dialogProfileDetailsBinding.getRoot(), false, dialog);
+        });
+
+        dialog.setOnShowListener(dialogInterface -> revealShowImage(dialogProfileDetailsBinding.getRoot(), true, null));
+
+        dialog.setOnKeyListener((dialogInterface, i, keyEvent) -> {
+            if (i == KeyEvent.KEYCODE_BACK) {
+
+                revealShowImage(dialogProfileDetailsBinding.getRoot(), false, dialog);
                 return true;
             }
 

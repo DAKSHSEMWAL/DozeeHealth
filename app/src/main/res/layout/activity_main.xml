@@ -113,7 +113,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/_11sdp"
-                    android:padding="@dimen/_5sdp"
                     android:src="@drawable/ic_prev"
                     app:layout_constraintBottom_toBottomOf="@id/todaydate"
                     app:layout_constraintEnd_toStartOf="@id/todaydate"
@@ -136,7 +135,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_11sdp"
-                    android:padding="@dimen/_5sdp"
                     android:src="@drawable/ic_next"
                     app:layout_constraintBottom_toBottomOf="@id/todaydate"
                     app:layout_constraintStart_toEndOf="@id/todaydate"
@@ -185,6 +183,7 @@
                         android:paddingTop="@dimen/_5sdp"
                         android:paddingEnd="@dimen/_14sdp"
                         android:paddingBottom="@dimen/_5sdp"
+                        android:text="Fresh"
                         android:textColor="@color/DeepCove"
                         android:textSize="@dimen/_8sdp"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -203,6 +202,7 @@
                         android:paddingTop="@dimen/_5sdp"
                         android:paddingEnd="@dimen/_14sdp"
                         android:paddingBottom="@dimen/_5sdp"
+                        android:text="Good"
                         android:textColor="@color/DeepCove"
                         android:textSize="@dimen/_8sdp"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -220,6 +220,7 @@
                         android:paddingStart="@dimen/_14sdp"
                         android:paddingTop="@dimen/_5sdp"
                         android:paddingEnd="@dimen/_14sdp"
+                        android:text="Tired"
                         android:paddingBottom="@dimen/_5sdp"
                         android:textColor="@color/DeepCove"
                         android:textSize="@dimen/_8sdp"
@@ -302,6 +303,7 @@
                                 android:layout_marginEnd="@dimen/_20sdp"
                                 android:fontFamily="@font/nunito_extralight"
                                 android:textColor="@color/White1"
+                                android:text="@string/dash"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintTop_toBottomOf="@id/more1" />
 
@@ -390,6 +392,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="@dimen/_10sdp"
                                 android:layout_marginEnd="@dimen/_20sdp"
+                                android:text="@string/dash"
                                 android:fontFamily="@font/nunito_extralight"
                                 android:textColor="@color/White1"
                                 app:layout_constraintEnd_toEndOf="parent"
@@ -479,6 +482,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="@dimen/_10sdp"
                                 android:layout_marginEnd="@dimen/_20sdp"
+                                android:text="@string/dash"
                                 android:fontFamily="@font/nunito_extralight"
                                 android:textColor="@color/White1"
                                 app:layout_constraintEnd_toEndOf="parent"
@@ -570,6 +574,7 @@
                                 android:fontFamily="@font/nunito_extralight"
                                 android:textSize="@dimen/_21sdp"
                                 android:textColor="@color/White1"
+                                android:text="@string/dash"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintTop_toBottomOf="@id/more4" />
 
@@ -590,6 +595,7 @@
                                 android:layout_marginEnd="@dimen/_20sdp"
                                 android:fontFamily="@font/nunito_extralight"
                                 android:textSize="@dimen/_21sdp"
+                                android:text="@string/dash"
                                 android:textColor="@color/White1"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintTop_toBottomOf="@id/Systole" />
@@ -688,6 +694,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="@dimen/_10sdp"
                                 android:layout_marginEnd="@dimen/_20sdp"
+                                android:text="@string/dash"
                                 android:fontFamily="@font/nunito_extralight"
                                 android:textColor="@color/White1"
                                 app:layout_constraintEnd_toEndOf="parent"
@@ -753,6 +760,7 @@
                                 android:layout_marginEnd="@dimen/_20sdp"
                                 android:src="@drawable/ic_more"
                                 android:padding="@dimen/_5sdp"
+
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintTop_toTopOf="@id/text6"
                                 app:layout_constraintBottom_toBottomOf="@id/text6"/>
@@ -778,6 +786,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="@dimen/_10sdp"
                                 android:layout_marginEnd="@dimen/_20sdp"
+                                android:text="@string/dash"
                                 android:fontFamily="@font/nunito_extralight"
                                 android:textColor="@color/White1"
                                 app:layout_constraintEnd_toEndOf="parent"
