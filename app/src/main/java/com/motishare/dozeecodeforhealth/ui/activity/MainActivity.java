@@ -945,7 +945,7 @@ public class MainActivity extends BaseActivity {
         final Dialog dialog = new Dialog(mContext, R.style.MyAlertDialogStyle);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialogWeeklyRecoveryDetailsBinding = DataBindingUtil.inflate(LayoutInflater.from(dialog.getContext()), R.layout.dialog_weekly_recovery_details, null, false);
-        Dali.create(mContext).load(binding.getRoot()).blurRadius(17).into(dialogWeeklySleeprateDetailsBinding.imgBg);
+        Dali.create(mContext).load(binding.getRoot()).blurRadius(17).into(dialogWeeklyRecoveryDetailsBinding.imgBg);
         dialog.setContentView(dialogWeeklyRecoveryDetailsBinding.getRoot());
         dialogWeeklyRecoveryDetailsBinding.time.setText(crrentweek);
         setRecoveryLineData();
@@ -1091,8 +1091,8 @@ public class MainActivity extends BaseActivity {
         int c = 0;
         for (UserData a : tempList) {
             if (a.getRecovery() != null) {
-                recoveryrate.add(a.getSleepscore());
-                if (a.getSleepscore() < 80) {
+                recoveryrate.add(a.getRecovery());
+                if (a.getRecovery() < 80) {
                     c++;
                 }
             }
@@ -1204,9 +1204,9 @@ public class MainActivity extends BaseActivity {
         YAxis leftAxis = dialogWeeklyRecoveryDetailsBinding.chart.getAxisLeft();
         leftAxis.removeAllLimitLines();
         leftAxis.addLimitLine(ll1);
-        leftAxis.setAxisMaximum(110f);
-        leftAxis.setAxisMinimum(40f);
-        leftAxis.setLabelCount(10);
+        leftAxis.setAxisMaximum(190f);
+        leftAxis.setAxisMinimum(70f);
+        leftAxis.setLabelCount(15);
         leftAxis.setZeroLineColor(Color.WHITE);
         leftAxis.setDrawZeroLine(true);
         leftAxis.setDrawLimitLinesBehindData(true);
@@ -1554,7 +1554,7 @@ public class MainActivity extends BaseActivity {
         int c = 1;
         for (UserData a : tempList) {
             if (a.getRecovery() != null) {
-                Log.e("Data",""+a.getSleepscore());
+                Log.e("Data",""+a.getRecovery());
                 values.add(new Entry(c, a.getRecovery()));
                 c = c + 1;
             }
