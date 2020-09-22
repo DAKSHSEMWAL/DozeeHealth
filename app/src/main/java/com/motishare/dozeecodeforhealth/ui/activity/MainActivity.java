@@ -1950,7 +1950,7 @@ public class MainActivity extends BaseActivity {
         llXAxis.setTextColor(R.color.White);
         llXAxis.setTextSize(10f);
 
-        XAxis xAxis = dialogMonthlyBreathrateDetailsBinding.chart.getXAxis();
+        XAxis xAxis = dialogMonthlyRecoveryDetailsBinding.chart.getXAxis();
         xAxis.setAxisMaximum(Float.parseFloat(Common.getDate(DATE21, DATE24, lastday)));
         xAxis.setAxisMinimum(Float.parseFloat(Common.getDate(DATE21, DATE24, firstday)));
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
@@ -1963,7 +1963,7 @@ public class MainActivity extends BaseActivity {
         ll1.setLineColor(ContextCompat.getColor(mContext, R.color.Healthy));
 
 
-        YAxis leftAxis = dialogWeeklyRecoveryDetailsBinding.chart.getAxisLeft();
+        YAxis leftAxis = dialogMonthlyRecoveryDetailsBinding.chart.getAxisLeft();
         leftAxis.removeAllLimitLines();
         leftAxis.addLimitLine(ll1);
         leftAxis.setAxisMaximum(190f);
@@ -1973,7 +1973,7 @@ public class MainActivity extends BaseActivity {
         leftAxis.setDrawZeroLine(true);
         leftAxis.setDrawLimitLinesBehindData(true);
 
-        dialogWeeklyRecoveryDetailsBinding.chart.getAxisRight().setEnabled(false);
+        dialogMonthlyRecoveryDetailsBinding.chart.getAxisRight().setEnabled(false);
         setMRecoveryRateDate();
     }
 
