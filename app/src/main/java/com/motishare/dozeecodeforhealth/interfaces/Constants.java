@@ -46,6 +46,7 @@ public interface Constants {
     String DATE21 = "dd MMM";
     String DATE22 = "yyyy";
     String DATE23 = "EE";
+    String DATE24 = "dd";
 
 
     String TIME = "HH:mm:ss";
