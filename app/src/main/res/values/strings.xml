@@ -1,0 +1,58 @@
+<resources>
+    <string name="app_name">DozeeCode For Health</string>
+
+    <string name="location_permission_denied">Permission Denied</string>
+    <string name="permission_required_toast">Location Permission Required</string>
+    <string name="permission_rationale_location">This application requires to access your location.</string>
+    <string name="share">Share</string>
+    <string name="daily">Daily</string>
+    <string name="weekly">Weekly</string>
+    <string name="monthly">Monthly</string>
+    <string name="whatsapp">WhatsApp</string>
+    <string name="vitals">Vitals</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="fresh">Fresh</string>
+    <string name="hi_rishi_how_are_you_feeling_this_morning">Hi, Rishi. How are you feeling this morning ?</string>
+    <string name="good">Good</string>
+    <string name="tired">Tired</string>
+    <string name="share_title">Share Your Record</string>
+    <string name="okay">OK</string>
+    <string name="ok">OK</string>
+    <string name="server_error_msg">Server isn\'t responding. Please try after some time.</string>
+    <string name="email">Email</string>
+    <string name="call">Call</string>
+    <string name="heart_rate">Heart Rate</string>
+    <string name="breath_rate">Breath Rate</string>
+    <string name="blood_oxygen">Blood Oxygen</string>
+    <string name="blood_pressure">Blood Pressure</string>
+    <string name="sleep_rate">Sleep Rate</string>
+    <string name="stress_rate">Stress Rate</string>
+    <string name="understand_heart_rate">Understand Heart Rate</string>
+    <string name="the_heart_rate_is_one_of_the_vital_signs_or_the_important_indicators_of_health_in_the_human_body_it_measures_the_number_of_times_that_the_heart_contracts_or_beats_per_minute_the_speed_of_the_heartbeat_varies_as_a_result_of_physical_activity_threats_to_safety_and_emotional_responses_the_resting_heart_rate_refers_to_the_heart_rate_when_a_person_is_at_rest">The heart rate is one of the ‘vital signs,’ or the important indicators of health in the human body. It measures the number of times that the heart contracts or beats per minute . The speed of the heartbeat varies as a result of physical activity, threats to safety, and emotional responses. The resting heart rate refers to the heart rate when a person is at rest.</string>
+    <string name="healthy_range_n_average_55_65_bpm_n_n_nborderline_range_n_average_45_54_bpm_66_75_bpm_n_n_n_unhealthy_range_n_average_45_bpm_75_bpm"><![CDATA[Healthy Range –\n Average 55-65 bpm \n\n\nBorderline Range -\n Average 45-54 bpm & 66-75 bpm\n\n\n Unhealthy Range -\n Average <45 bpm & >75 bpm]]></string>
+    <string name="knowmore">Know More</string>
+    <string name="the_respiration_rate_is_another_vital_sign_which_is_one_of_the_most_important_indicators_of_health_in_the_human_body_respiration_rate_is_reported_in_respirations_breaths_per_minute_each_respiration_has_two_phases_inhalation_and_exhalation_during_inhalation_oxygen_is_brought_into_the_lungs_from_where_it_is_transported_throughout_the_body_via_the_bloodstream_during_exhalation_carbon_dioxide_is_eliminated">The Respiration Rate is another ‘Vital Sign’ which is one of the most important indicators of health in the human body. Respiration rate is reported in respirations (breaths) per minute. Each respiration has two phases: Inhalation and exhalation. During inhalation, oxygen is brought into the lungs from where it is transported throughout the body via the bloodstream. During exhalation, carbon dioxide is eliminated</string>
+    <string name="healthy_range_naverage_8_12_bpm_n_n_nborderline_range_n_average_13_15_bpm_n_n_nunhealthy_range_red_naverage_8_bpm_15_bpm"><![CDATA[Healthy Range –\nAverage 8–12 bpm\n\n\nBorderline Range -\n Average 13-15 bpm\n\n\nUnhealthy Range (Red) -\nAverage <8 bpm & >15 bpm]]></string>
+    <string name="understand_breath_rate">Understand Breath Rate</string>
+    <string name="understand_blood_oxygen_saturation">Understand Blood Oxygen Saturation</string>
+    <string name="oxygen_saturation_refers_to_the_extent_to_which_hemoglobin_is_saturated_with_oxygen_hemoglobin_is_an_element_in_your_blood_that_binds_with_oxygen_to_carry_it_through_the_bloodstream_to_the_organs_tissues_and_cells_of_your_body_it_is_an_important_parameter_for_managing_patients_in_a_clinical_setup">Oxygen saturation refers to the extent to which hemoglobin is saturated with oxygen. Hemoglobin is an element in your blood that binds with oxygen to carry it through the bloodstream to the organs, tissues, and cells of your body. It is an important parameter for managing patients in a clinical setup.</string>
+    <string name="healthy_range_n_average_94_n_n_nborderline_range_naverage_90_94_n_n_nunhealthy_range_naverage_90"><![CDATA[Healthy Range -\n Average >94%\n\n\nBorderline Range -\nAverage 90-94%\n\n\nUnhealthy Range -\nAverage <90%]]></string>
+    <string name="understand_blood_pressure">Understand Blood Pressure</string>
+    <string name="blood_pressure_bp_is_the_pressure_of_circulating_blood_against_the_walls_of_blood_vessels_most_of_this_pressure_results_from_the_heart_pumping_blood_through_the_circulatory_system_when_used_without_qualification_the_term_blood_pressure_refers_to_the_pressure_in_the_large_arteries_blood_pressure_is_usually_expressed_in_terms_of_the_systolic_pressure_maximum_pressure_during_one_heartbeat_over_diastolic_pressure_minimum_pressure_between_two_heartbeats_in_the_cardiac_cycle_it_is_measured_in_millimeters_of_mercury_mmhg_above_the_surrounding_atmospheric_pressure">Blood pressure (BP) is the pressure of circulating blood against the walls of blood vessels. Most of this pressure results from the heart pumping blood through the circulatory system. When used without qualification, the term \'blood pressure\' refers to the pressure in the large arteries. Blood pressure is usually expressed in terms of the systolic pressure (maximum pressure during one heartbeat) over diastolic pressure(minimum pressure between two heartbeats) in the cardiac cycle. It is measured in millimeters of mercury (mmHg) above the surrounding atmospheric pressure.</string>
+    <string name="healthy_range_naverage_systolic_130_mmhg_naverage_diastolic_80_mmhg_n_n_nborderline_range_naverage_systolic_130_140_mmhg_naverage_diastolic_80_90_mmhg_n_n_nunhealthy_range_naverage_systolic_140_mmhg_naverage_diastolic_90_mmhg"><![CDATA[Healthy Range -\nAverage Systolic <130 mmHg\nAverage Diastolic<80 mmHg\n\n\nBorderline Range -\nAverage Systolic 130-140 mmHg \nAverage Diastolic 80-90 mmHg \n\n\nUnhealthy Range -\nAverage Systolic >140 mmHg\nAverage Diastolic >90 mmHg]]></string>
+    <string name="sleep_is_a_complex_process_of_the_body_contrary_to_the_popular_belief_that_the_brain_and_body_shut_down_during_sleep_both_go_through_several_processes_to_ensure_adequate_recovery_from_burning_calories_to_clearing_neurotoxins_and_more_most_healthy_adults_need_7_9_hours_of_sleep_as_per_nih_usa_dozee_s_sleep_score_quantifies_the_efficacy_of_your_sleep_by_measuring_several_parameters_related_to_your_sleep_including_body_vitals_sleep_routine_composition_of_sleep_and_restfulness_among_others">Sleep is a complex process of the body. Contrary to the popular belief that the brain and body shut down during sleep, both go through several processes to ensure adequate recovery — from burning calories to clearing neurotoxins and more. Most healthy adults need 7-9 hours of sleep as per NIH, USA. Dozee’s sleep score quantifies the efficacy of your sleep by measuring several parameters related to your sleep including body vitals, sleep routine, composition of sleep, and restfulness among others.</string>
+    <string name="understand_sleep_score">Understand Sleep Score</string>
+    <string name="healthy_range_n_average_score_80_n_n_nborderline_range_n_average_score_70_79_n_n_nunhealthy_range_naverage_score_70"><![CDATA[Healthy Range -\n Average Score >80\n\n\nBorderline Range -\n Average Score 70-79\n\n\nUnhealthy Range -\nAverage Score <70]]></string>
+    <string name="understand_recovery">Understand Recovery</string>
+    <string name="stress_is_the_body_s_response_to_anything_that_moves_it_away_from_being_normal_or_healthy_stress_hence_is_much_more_than_the_mental_stress_how_we_perceive_it_it_can_be_physical_hormonal_digestive_environmental_and_mental_recovery_score_enables_you_to_track_the_effectiveness_of_your_sleep_to_help_you_recover_from_the_stress_that_you_accumulate_during_the_day_high_recovery_levels_are_excellent_indicators_of_good_health">Stress is the body\'s response to anything that moves it away from being ‘Normal’ or ‘Healthy’. Stress hence is much more than the mental stress how we perceive it. It can be physical, hormonal, digestive, environmental, and mental. Recovery Score enables you to track the effectiveness of your sleep to help you recover from the stress that you accumulate during the day. High recovery levels are excellent indicators of good health.</string>
+    <string name="healthy_range_naverage_90_n_n_nborderline_range_naverage_75_89_n_n_nunhealthy_range_naverage_75"><![CDATA[Healthy Range -\nAverage >90%\n\n\nBorderline Range -\nAverage 75-89%\n\n\nUnhealthy Range -\nAverage <75%]]></string>
+    <string name="_3_times_out_of_healthy_range">3 times out of healthy range</string>
+    <string name="_70_to_80_healthy_range">70 to 80 Healthy Range</string>
+    <string name="_14_20_sep_2020">14 - 20 Sep 2020</string>
+    <string name="dash">-</string>
+    <string name="my_profile">My Profile</string>
+    <string name="name">Name:- </string>
+    <string name="date_of_birth">Date of Birth :- </string>
+
+</resources>

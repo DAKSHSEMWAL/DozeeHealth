@@ -1,0 +1,63 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowDisablePreview">true</item>
+    </style>
+
+
+    <style name="Display60Pt">
+        <item name="android:textSize">@dimen/_46sdp</item>
+    </style>
+    <style name="H136Pt">
+        <item name="android:textSize">@dimen/_24sdp</item>
+    </style>
+    <style name="H232Pt">
+        <item name="android:textSize">@dimen/_24sdp</item>
+        <item name="android:letterSpacing">0.01</item>
+    </style>
+    <style name="H328Pt">
+        <item name="android:textSize">@dimen/_24sdp</item>
+    </style>
+    <style name="H424Pt">
+        <item name="android:textSize">@dimen/_18sdp</item>
+        <item name="android:letterSpacing">0.02</item>
+    </style>
+    <style name="H520Pt">
+        <item name="android:textSize">@dimen/_15sdp</item>
+    </style>
+    <style name="H616Pt">
+        <item name="android:textSize">@dimen/_12sdp</item>
+        <item name="android:letterSpacing">0.03</item>
+    </style>
+    <style name="Body116Pt">
+        <item name="android:textSize">@dimen/_12sdp</item>
+        <item name="android:letterSpacing">0.02</item>
+        <item name="android:lineSpacingExtra">@dimen/_6sdp</item>
+    </style>
+    <style name="Body214Pt">
+        <item name="android:textSize">14sp</item>
+    </style>
+    <style name="Caption12Pt">
+        <item name="android:textSize">@dimen/_10sdp</item>
+        <item name="android:letterSpacing">0.02</item>
+    </style>
+    <style name="Outline10Pt">
+        <item name="android:textSize">@dimen/_8sdp</item>
+        <item name="android:letterSpacing">0.04</item>
+        <item name="android:lineSpacingExtra">@dimen/_7sdp</item>
+    </style>
+
+
+    <style name="MyAlertDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
+
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowBackground">@null</item>
+        <item name="android:windowTranslucentStatus">true</item>
+    </style>
+</resources>

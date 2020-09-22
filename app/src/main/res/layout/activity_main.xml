@@ -1,0 +1,861 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/CodGray"
+        tools:context=".ui.activity.MainActivity">
+
+        <include
+            android:id="@+id/mToolbar"
+            layout="@layout/layout_toolbar" />
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@color/Ebony"
+            android:fillViewport="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/mToolbar">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/Ebony"
+                app:layout_constraintTop_toBottomOf="@id/mToolbar">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/tabBar"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:layout_marginEnd="@dimen/_15sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:id="@+id/daily"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_15sdp"
+                        android:background="@drawable/tab_background"
+                        android:fontFamily="@font/nunito_bold"
+                        android:paddingStart="@dimen/_14sdp"
+                        android:paddingTop="@dimen/_5sdp"
+                        android:paddingEnd="@dimen/_14sdp"
+                        android:paddingBottom="@dimen/_5sdp"
+                        android:text="@string/daily"
+                        android:textColor="@color/White"
+                        android:textSize="@dimen/_8sdp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+
+                    <TextView
+                        android:id="@+id/weekly"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_15sdp"
+                        android:fontFamily="@font/nunito_bold"
+                        android:paddingStart="@dimen/_14sdp"
+                        android:paddingTop="@dimen/_5sdp"
+                        android:paddingEnd="@dimen/_14sdp"
+                        android:paddingBottom="@dimen/_5sdp"
+                        android:text="@string/weekly"
+                        android:textColor="@color/White"
+                        android:textSize="@dimen/_8sdp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/daily"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+
+                    <TextView
+                        android:id="@+id/monthly"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_15sdp"
+                        android:fontFamily="@font/nunito_bold"
+                        android:paddingStart="@dimen/_14sdp"
+                        android:paddingTop="@dimen/_5sdp"
+                        android:paddingEnd="@dimen/_14sdp"
+                        android:paddingBottom="@dimen/_5sdp"
+                        android:text="@string/monthly"
+                        android:textColor="@color/White"
+                        android:textSize="@dimen/_8sdp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/weekly"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/share"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="@string/share"
+                        android:src="@drawable/ic_share"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <ImageView
+                    android:id="@+id/prev"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/_11sdp"
+                    android:padding="@dimen/_5sdp"
+                    android:src="@drawable/ic_prev"
+                    app:layout_constraintBottom_toBottomOf="@id/todaydate"
+                    app:layout_constraintEnd_toStartOf="@id/todaydate"
+                    app:layout_constraintTop_toTopOf="@id/todaydate" />
+
+                <TextView
+                    android:id="@+id/todaydate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:fontFamily="@font/nunito_semibold"
+                    android:textColor="@color/White"
+                    android:textSize="@dimen/_9sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tabBar" />
+
+                <ImageView
+                    android:id="@+id/next"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_11sdp"
+                    android:src="@drawable/ic_next"
+                    android:padding="@dimen/_5sdp"
+                    app:layout_constraintBottom_toBottomOf="@id/todaydate"
+                    app:layout_constraintStart_toEndOf="@id/todaydate"
+                    app:layout_constraintTop_toTopOf="@id/todaydate" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/question"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:layout_marginEnd="@dimen/_15sdp"
+                    android:background="@drawable/question_background"
+                    android:padding="@dimen/_15sdp"
+                    app:layout_constraintBottom_toTopOf="@id/navview"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/todaydate">
+
+                    <TextView
+                        android:id="@+id/questiona"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/nunito_bold"
+                        android:textColor="@color/White"
+                        android:textSize="@dimen/_8sdp"
+                        app:layout_constraintBottom_toTopOf="@id/fresh"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_sun"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/fresh"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_11sdp"
+                        android:background="@drawable/button_background"
+                        android:fontFamily="@font/nunito_bold"
+                        android:paddingStart="@dimen/_14sdp"
+                        android:paddingTop="@dimen/_5sdp"
+                        android:paddingEnd="@dimen/_14sdp"
+                        android:paddingBottom="@dimen/_5sdp"
+                        android:text="Fresh"
+                        android:textColor="@color/DeepCove"
+                        android:textSize="@dimen/_8sdp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/questiona" />
+
+                    <TextView
+                        android:id="@+id/good"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_8sdp"
+                        android:layout_marginTop="@dimen/_11sdp"
+                        android:background="@drawable/button_background"
+                        android:fontFamily="@font/nunito_bold"
+                        android:paddingStart="@dimen/_14sdp"
+                        android:paddingTop="@dimen/_5sdp"
+                        android:paddingEnd="@dimen/_14sdp"
+                        android:paddingBottom="@dimen/_5sdp"
+                        android:text="Good"
+                        android:textColor="@color/DeepCove"
+                        android:textSize="@dimen/_8sdp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/fresh"
+                        app:layout_constraintTop_toBottomOf="@id/questiona" />
+
+                    <TextView
+                        android:id="@+id/tired"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_8sdp"
+                        android:layout_marginTop="@dimen/_11sdp"
+                        android:background="@drawable/button_background"
+                        android:fontFamily="@font/nunito_bold"
+                        android:paddingStart="@dimen/_14sdp"
+                        android:paddingTop="@dimen/_5sdp"
+                        android:paddingEnd="@dimen/_14sdp"
+                        android:text="Tired"
+                        android:paddingBottom="@dimen/_5sdp"
+                        android:textColor="@color/DeepCove"
+                        android:textSize="@dimen/_8sdp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/good"
+                        app:layout_constraintTop_toBottomOf="@id/questiona" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <!--<fragment
+                    android:id="@+id/nav_host_fragment2"
+                    android:name="androidx.navigation.fragment.NavHostFragment"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:defaultNavHost="true"
+                    app:layout_constraintBottom_toTopOf="@id/nav_view"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/question"
+                    app:navGraph="@navigation/mobile_navigation" />-->
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/navview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:layout_marginBottom="@dimen/_15sdp"
+                    app:layout_constraintBottom_toTopOf="@id/nav_view"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/question">
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/heartRate"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginStart="@dimen/_15sdp"
+                        android:layout_marginEnd="@dimen/_6sdp"
+                        app:cardBackgroundColor="@color/PortGore"
+                        app:cardCornerRadius="@dimen/_3sdp"
+                        app:layout_constraintBottom_toTopOf="@id/O2"
+                        app:layout_constraintDimensionRatio="1:1"
+                        app:layout_constraintEnd_toStartOf="@id/breathRate"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <ImageView
+                                android:id="@+id/more1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="@dimen/_20sdp"
+                                android:padding="@dimen/_5sdp"
+                                android:src="@drawable/ic_more"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="@id/text"
+                                app:layout_constraintBottom_toBottomOf="@id/text"/>
+
+                            <TextView
+                                android:id="@+id/text"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/_15sdp"
+                                android:layout_marginTop="@dimen/_19sdp"
+                                android:fontFamily="@font/nunito_semibold"
+                                android:text="@string/heart_rate"
+                                android:textColor="@color/White1opaque"
+                                android:textSize="@dimen/_11sdp"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/heartRatetext"
+                                style="@style/Display60Pt"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_10sdp"
+                                android:layout_marginEnd="@dimen/_20sdp"
+                                android:fontFamily="@font/nunito_extralight"
+                                android:textColor="@color/White1"
+                                android:text="@string/dash"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/more1" />
+
+                            <TextView
+                                android:id="@+id/bpm"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="@dimen/_20sdp"
+                                android:fontFamily="@font/nunito_semibold"
+                                android:text="BPM"
+                                android:textColor="@color/White1opaque"
+                                android:textSize="@dimen/_11sdp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/heartRatetext" />
+
+                            <ImageView
+                                android:id="@+id/heartRateicon"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/_15sdp"
+                                android:layout_marginTop="@dimen/_19sdp"
+                                android:layout_marginBottom="@dimen/_18sdp"
+                                android:src="@drawable/ic_vitalsgreens"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toStartOf="parent" />
+
+                            <View
+                                android:id="@+id/heartratelevel"
+                                android:layout_width="0dp"
+                                android:layout_height="@dimen/_3sdp"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"/>
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/breathRate"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginStart="@dimen/_6sdp"
+                        android:layout_marginEnd="@dimen/_15sdp"
+                        app:cardBackgroundColor="@color/PortGore"
+                        app:cardCornerRadius="@dimen/_3sdp"
+                        app:cardElevation="@dimen/_10sdp"
+                        app:layout_constraintBottom_toTopOf="@id/bloodPressure"
+                        app:layout_constraintDimensionRatio="1:1"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/heartRate"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <ImageView
+                                android:id="@+id/more2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="@dimen/_20sdp"
+                                android:src="@drawable/ic_more"
+                                android:padding="@dimen/_5sdp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="@id/text1"
+                                app:layout_constraintBottom_toBottomOf="@id/text1"/>
+
+                            <TextView
+                                android:id="@+id/text1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/_15sdp"
+                                android:layout_marginTop="@dimen/_19sdp"
+                                android:fontFamily="@font/nunito_semibold"
+                                android:text="@string/breath_rate"
+                                android:textColor="@color/White1opaque"
+                                android:textSize="@dimen/_11sdp"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/breathRatetext"
+                                style="@style/Display60Pt"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_10sdp"
+                                android:layout_marginEnd="@dimen/_20sdp"
+                                android:text="@string/dash"
+                                android:fontFamily="@font/nunito_extralight"
+                                android:textColor="@color/White1"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/more2" />
+
+                            <TextView
+                                android:id="@+id/bpm1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="@dimen/_20sdp"
+                                android:fontFamily="@font/nunito_semibold"
+                                android:text="BPM"
+                                android:textColor="@color/White1opaque"
+                                android:textSize="@dimen/_11sdp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/breathRatetext" />
+
+                            <ImageView
+                                android:id="@+id/breathRateicon"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/_15sdp"
+                                android:layout_marginTop="@dimen/_19sdp"
+                                android:layout_marginBottom="@dimen/_18sdp"
+                                android:src="@drawable/ic_lungs"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toStartOf="parent" />
+
+                            <View
+                                android:id="@+id/breathratelevel"
+                                android:layout_width="0dp"
+                                android:layout_height="@dimen/_3sdp"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"/>
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/O2"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginStart="@dimen/_15sdp"
+                        android:layout_marginTop="@dimen/_11sdp"
+                        android:layout_marginEnd="@dimen/_6sdp"
+                        app:cardBackgroundColor="@color/PortGore"
+                        app:cardCornerRadius="@dimen/_3sdp"
+                        app:layout_constraintDimensionRatio="1:1"
+                        app:layout_constraintEnd_toStartOf="@id/bloodPressure"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/heartRate">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <ImageView
+                                android:id="@+id/more3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="@dimen/_20sdp"
+                                android:src="@drawable/ic_more"
+                                android:padding="@dimen/_5sdp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="@id/text2"
+                                app:layout_constraintBottom_toBottomOf="@id/text2"/>
+
+                            <TextView
+                                android:id="@+id/text2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/_15sdp"
+                                android:layout_marginTop="@dimen/_19sdp"
+                                android:fontFamily="@font/nunito_semibold"
+                                android:text="@string/blood_oxygen"
+                                android:textColor="@color/White1opaque"
+                                android:textSize="@dimen/_11sdp"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/o2text"
+                                style="@style/Display60Pt"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_10sdp"
+                                android:layout_marginEnd="@dimen/_20sdp"
+                                android:text="@string/dash"
+                                android:fontFamily="@font/nunito_extralight"
+                                android:textColor="@color/White1"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/more3" />
+
+                            <TextView
+                                android:id="@+id/percent"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="@dimen/_20sdp"
+                                android:fontFamily="@font/nunito_semibold"
+                                android:text="%"
+                                android:textColor="@color/White1opaque"
+                                android:textSize="@dimen/_11sdp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/o2text" />
+
+                            <ImageView
+                                android:id="@+id/o2icon"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/_15sdp"
+                                android:layout_marginTop="@dimen/_19sdp"
+                                android:layout_marginBottom="@dimen/_18sdp"
+                                android:src="@drawable/ic_oxygen"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toStartOf="parent" />
+
+                            <View
+                                android:id="@+id/bloodoxygenlevel"
+                                android:layout_width="0dp"
+                                android:layout_height="@dimen/_3sdp"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"/>
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/bloodPressure"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginStart="@dimen/_6sdp"
+                        android:layout_marginTop="@dimen/_11sdp"
+                        android:layout_marginEnd="@dimen/_15sdp"
+                        app:cardBackgroundColor="@color/PortGore"
+                        app:cardCornerRadius="@dimen/_3sdp"
+                        app:layout_constraintBottom_toTopOf="@id/Recovery"
+                        app:layout_constraintDimensionRatio="1:1"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/O2"
+                        app:layout_constraintTop_toBottomOf="@id/breathRate">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <ImageView
+                                android:id="@+id/more4"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="@dimen/_20sdp"
+                                android:padding="@dimen/_5sdp"
+                                android:src="@drawable/ic_more"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="@id/text3"
+                                app:layout_constraintBottom_toBottomOf="@id/text3"/>
+                            <TextView
+                                android:id="@+id/text3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/_15sdp"
+                                android:layout_marginTop="@dimen/_19sdp"
+                                android:fontFamily="@font/nunito_semibold"
+                                android:text="@string/blood_pressure"
+                                android:textColor="@color/White1opaque"
+                                android:textSize="@dimen/_11sdp"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/Systole"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_10sdp"
+                                android:layout_marginEnd="@dimen/_20sdp"
+                                android:fontFamily="@font/nunito_extralight"
+                                android:textSize="@dimen/_21sdp"
+                                android:textColor="@color/White1"
+                                android:text="@string/dash"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/more4" />
+
+                            <ImageView
+                                android:id="@+id/up"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/_61sdp"
+                                android:src="@drawable/ic_up"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="@id/Systole"
+                                app:layout_constraintBottom_toBottomOf="@id/Systole"/>
+
+                            <TextView
+                                android:id="@+id/Diastole"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="@dimen/_20sdp"
+                                android:fontFamily="@font/nunito_extralight"
+                                android:textSize="@dimen/_21sdp"
+                                android:text="@string/dash"
+                                android:textColor="@color/White1"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/Systole" />
+
+                            <ImageView
+                                android:id="@+id/down"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/ic_down"
+                                android:layout_marginStart="@dimen/_61sdp"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="@id/Diastole"
+                                app:layout_constraintBottom_toBottomOf="@id/Diastole"/>
+
+                            <TextView
+                                android:id="@+id/mmHg"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="@dimen/_20sdp"
+                                android:fontFamily="@font/nunito_semibold"
+                                android:text="mmHg"
+                                android:textColor="@color/White1opaque"
+                                android:textSize="@dimen/_11sdp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/Diastole" />
+
+                            <ImageView
+                                android:id="@+id/rateicon"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/_15sdp"
+                                android:layout_marginTop="@dimen/_19sdp"
+                                android:layout_marginBottom="@dimen/_18sdp"
+                                android:src="@drawable/ic_rate"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toStartOf="parent" />
+
+                            <View
+                                android:id="@+id/bloodpressurelevel"
+                                android:layout_width="0dp"
+                                android:layout_height="@dimen/_3sdp"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"/>
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/sleepscore"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginStart="@dimen/_15sdp"
+                        android:layout_marginTop="@dimen/_11sdp"
+                        android:layout_marginEnd="@dimen/_6sdp"
+                        app:cardBackgroundColor="@color/PortGore"
+                        app:cardCornerRadius="@dimen/_3sdp"
+                        app:layout_constraintDimensionRatio="1:1"
+                        app:layout_constraintEnd_toStartOf="@id/Recovery"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/O2">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <ImageView
+                                android:id="@+id/more5"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="@dimen/_20sdp"
+                                android:src="@drawable/ic_more"
+                                android:padding="@dimen/_5sdp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="@id/text5"
+                                app:layout_constraintBottom_toBottomOf="@id/text5"/>
+
+                            <TextView
+                                android:id="@+id/text5"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/_15sdp"
+                                android:layout_marginTop="@dimen/_19sdp"
+                                android:fontFamily="@font/nunito_semibold"
+                                android:text="@string/sleep_rate"
+                                android:textColor="@color/White1opaque"
+                                android:textSize="@dimen/_11sdp"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/sleepratetext"
+                                style="@style/Display60Pt"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_10sdp"
+                                android:layout_marginEnd="@dimen/_20sdp"
+                                android:text="@string/dash"
+                                android:fontFamily="@font/nunito_extralight"
+                                android:textColor="@color/White1"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/more5" />
+
+                            <TextView
+                                android:id="@+id/hund"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="@dimen/_20sdp"
+                                android:fontFamily="@font/nunito_semibold"
+                                android:text="/100"
+                                android:textColor="@color/White1opaque"
+                                android:textSize="@dimen/_11sdp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/sleepratetext" />
+
+                            <ImageView
+                                android:id="@+id/sleepratetexticon"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/_15sdp"
+                                android:layout_marginTop="@dimen/_19sdp"
+                                android:layout_marginBottom="@dimen/_18sdp"
+                                android:src="@drawable/ic_sleep"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toStartOf="parent" />
+
+                            <View
+                                android:id="@+id/sleeplevel"
+                                android:layout_width="0dp"
+                                android:layout_height="@dimen/_3sdp"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"/>
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/Recovery"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginStart="@dimen/_6sdp"
+                        android:layout_marginTop="@dimen/_11sdp"
+                        android:layout_marginEnd="@dimen/_15sdp"
+                        app:cardBackgroundColor="@color/PortGore"
+                        app:cardCornerRadius="@dimen/_3sdp"
+                        app:layout_constraintDimensionRatio="1:1"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/sleepscore"
+                        app:layout_constraintTop_toBottomOf="@id/bloodPressure">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <ImageView
+                                android:id="@+id/more6"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="@dimen/_20sdp"
+                                android:src="@drawable/ic_more"
+                                android:padding="@dimen/_5sdp"
+
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="@id/text6"
+                                app:layout_constraintBottom_toBottomOf="@id/text6"/>
+
+
+                            <TextView
+                                android:id="@+id/text6"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/_15sdp"
+                                android:layout_marginTop="@dimen/_19sdp"
+                                android:fontFamily="@font/nunito_semibold"
+                                android:text="@string/stress_rate"
+                                android:textColor="@color/White1opaque"
+                                android:textSize="@dimen/_11sdp"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/stresslevel"
+                                style="@style/Display60Pt"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_10sdp"
+                                android:layout_marginEnd="@dimen/_20sdp"
+                                android:text="@string/dash"
+                                android:fontFamily="@font/nunito_extralight"
+                                android:textColor="@color/White1"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/more6" />
+
+                            <TextView
+                                android:id="@+id/per"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="@dimen/_20sdp"
+                                android:fontFamily="@font/nunito_semibold"
+                                android:text="%"
+                                android:textColor="@color/White1opaque"
+                                android:textSize="@dimen/_11sdp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintBottom_toBottomOf="@id/stressicon"
+                                app:layout_constraintTop_toBottomOf="@id/stresslevel" />
+
+                            <ImageView
+                                android:id="@+id/stressicon"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/_15sdp"
+                                android:layout_marginTop="@dimen/_19sdp"
+                                android:layout_marginBottom="@dimen/_18sdp"
+                                android:src="@drawable/ic_stress"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toStartOf="parent" />
+
+                            <View
+                                android:id="@+id/stresslevell"
+                                android:layout_width="0dp"
+                                android:layout_height="@dimen/_3sdp"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"/>
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                <com.google.android.material.bottomnavigation.BottomNavigationView
+                    android:id="@+id/nav_view"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:background="@color/Valhalla"
+                    app:itemIconTint="@drawable/selectorcolor"
+                    app:itemTextColor="@drawable/selectorcolor"
+                    app:labelVisibilityMode="labeled"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:menu="@menu/bottom_nav_menu" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+        <include
+            android:id="@+id/loader"
+            layout="@layout/layout_loader"
+            android:visibility="gone" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

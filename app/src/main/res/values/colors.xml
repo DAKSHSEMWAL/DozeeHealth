@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#0E0D1D</color>
+    <color name="colorPrimaryDark">#0E0D1D</color>
+    <color name="colorAccent">#0E0D1D</color>
+
+
+
+    <color name="Ebony">#0E0D1D</color>
+    <color name="DeepCove">#050645</color>
+    <color name="Ebonyopaueq">#660E0D1D</color>
+    <color name="White">#FFFFFF</color>
+    <color name="White1">#FEFEFE</color>
+    <color name="White1opaque">#59FEFEFE</color>
+    <color name="Whiteopaque">#28FFFFFF</color>
+    <color name="Persimmon">#FF5757</color>
+    <color name="Grape">#36194B</color>
+    <color name="CodGray">#0F0F0F</color>
+    <color name="Scampi">#595BAE</color>
+    <color name="GoldenTainoi">#FFD15B</color>
+    <color name="ShipCove">#7276BF</color>
+    <color name="Seagull">#7dbae1</color>
+    <color name="Valhalla">#1C184E</color>
+    <color name="PortGore">#1F2142</color>
+    <color name="Merlot">#871c23</color>
+    <color name="Healthy">#2CBE61</color>
+    <color name="Borderline">#FF9F31</color>
+    <color name="Unhealthy">#FF5757</color>
+
+</resources>

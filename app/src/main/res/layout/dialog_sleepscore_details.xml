@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/dialog"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/transparent">
+
+        <ImageView
+            android:id="@+id/imgBg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:foregroundGravity="center"
+            android:padding="@dimen/_15sdp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/view1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/_23sdp"
+                android:layout_centerInParent="true"
+                android:background="@drawable/dialog_background"
+                android:foregroundGravity="center"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/_11sdp"
+                    android:textColor="@color/White"
+                    android:fontFamily="@font/nunito_semibold"
+                    android:text="@string/understand_sleep_score"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+                <ImageView
+                    android:id="@+id/drop"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_dropdown1"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    app:tint="@color/White"
+                    android:padding="@dimen/_5sdp"
+                    app:layout_constraintStart_toEndOf="@id/title"
+                    app:layout_constraintTop_toTopOf="@id/title"
+                    app:layout_constraintBottom_toBottomOf="@id/title"/>
+
+                <TextView
+                    android:id="@+id/details"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/_8sdp"
+                    android:layout_marginTop="@dimen/_23sdp"
+                    android:textColor="@color/White"
+                    android:fontFamily="@font/nunito_regular"
+                    android:text="@string/sleep_is_a_complex_process_of_the_body_contrary_to_the_popular_belief_that_the_brain_and_body_shut_down_during_sleep_both_go_through_several_processes_to_ensure_adequate_recovery_from_burning_calories_to_clearing_neurotoxins_and_more_most_healthy_adults_need_7_9_hours_of_sleep_as_per_nih_usa_dozee_s_sleep_score_quantifies_the_efficacy_of_your_sleep_by_measuring_several_parameters_related_to_your_sleep_including_body_vitals_sleep_routine_composition_of_sleep_and_restfulness_among_others"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/title"/>
+
+                <TextView
+                    android:id="@+id/range"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/_8sdp"
+                    android:layout_marginTop="@dimen/_23sdp"
+                    android:fontFamily="@font/nunito_regular"
+                    android:textColor="@color/White"
+                    android:text="@string/healthy_range_n_average_score_80_n_n_nborderline_range_n_average_score_70_79_n_n_nunhealthy_range_naverage_score_70"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/details"/>
+
+                <TextView
+                    android:id="@+id/knowMore"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_23sdp"
+                    android:background="@drawable/button_background_white"
+                    android:fontFamily="@font/nunito_bold"
+                    android:paddingStart="@dimen/_14sdp"
+                    android:paddingTop="@dimen/_5sdp"
+                    android:paddingEnd="@dimen/_14sdp"
+                    android:paddingBottom="@dimen/_5sdp"
+                    android:text="@string/knowmore"
+                    android:textColor="@color/DeepCove"
+                    android:textSize="@dimen/_8sdp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/range" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </RelativeLayout>
+</layout>

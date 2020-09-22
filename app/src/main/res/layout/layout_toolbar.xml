@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:paddingTop="@dimen/_20sdp"
+        app:elevation="0dp">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            android:minHeight="?attr/actionBarSize"
+            app:layout_scrollFlags="scroll|enterAlways"
+            app:title="">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/userprofile"
+                android:layout_width="@dimen/_23sdp"
+                android:layout_height="@dimen/_23sdp"
+                android:layout_gravity="start"
+                android:layout_marginEnd="@dimen/_8sdp"
+                android:src="@drawable/ic_user" />
+
+            <TextView
+                android:id="@+id/title_tv"
+                style="@style/Caption12Pt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:layout_marginEnd="@dimen/_8sdp"
+                android:fontFamily="@font/nunito_regular"
+                android:freezesText="true"
+                android:includeFontPadding="false"
+                android:maxLines="1"
+                android:text=""
+                android:textAllCaps="false"
+                android:textColor="@color/White" />
+
+            <ImageView
+                android:id="@+id/dropdown_menu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/_5sdp"
+                android:src="@drawable/ic_dropdown1"/>
+
+        </androidx.appcompat.widget.Toolbar>
+
+
+    </com.google.android.material.appbar.AppBarLayout>
+</layout>
+
