@@ -12,6 +12,11 @@ public class BP {
     @Expose
     private Integer diastole;
 
+    public BP(Integer systole, Integer diastole) {
+        this.systole = systole;
+        this.diastole = diastole;
+    }
+
     public Integer getSystole() {
         return systole;
     }

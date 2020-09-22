@@ -48,11 +48,16 @@
     <string name="stress_is_the_body_s_response_to_anything_that_moves_it_away_from_being_normal_or_healthy_stress_hence_is_much_more_than_the_mental_stress_how_we_perceive_it_it_can_be_physical_hormonal_digestive_environmental_and_mental_recovery_score_enables_you_to_track_the_effectiveness_of_your_sleep_to_help_you_recover_from_the_stress_that_you_accumulate_during_the_day_high_recovery_levels_are_excellent_indicators_of_good_health">Stress is the body\'s response to anything that moves it away from being ‘Normal’ or ‘Healthy’. Stress hence is much more than the mental stress how we perceive it. It can be physical, hormonal, digestive, environmental, and mental. Recovery Score enables you to track the effectiveness of your sleep to help you recover from the stress that you accumulate during the day. High recovery levels are excellent indicators of good health.</string>
     <string name="healthy_range_naverage_90_n_n_nborderline_range_naverage_75_89_n_n_nunhealthy_range_naverage_75"><![CDATA[Healthy Range -\nAverage >90%\n\n\nBorderline Range -\nAverage 75-89%\n\n\nUnhealthy Range -\nAverage <75%]]></string>
     <string name="_3_times_out_of_healthy_range">3 times out of healthy range</string>
-    <string name="_70_to_80_healthy_range">70 to 80 Healthy Range</string>
-    <string name="_14_20_sep_2020">14 - 20 Sep 2020</string>
+    <string name="_70_to_80_healthy_range">55 to 65 Healthy Range</string>
     <string name="dash">-</string>
     <string name="my_profile">My Profile</string>
     <string name="name">Name:- </string>
     <string name="date_of_birth">Date of Birth :- </string>
+    <string name="min">Min</string>
+    <string name="avg">Avg</string>
+    <string name="bpm">BPM</string>
+    <string name="daily_average">Daily Average</string>
+    <string name="_8_to_12_healthy_range">8 to 12 Healthy Range</string>
+    <string name="_94_healthy_range"><![CDATA[>94 % Healthy Range]]></string>
 
 </resources>

@@ -43,6 +43,9 @@ public interface Constants {
     String DATE18 = "MMM yyyy";
     String DATE19 = "MMM dd yyyy HH:mm:ss";
     String DATE20 = "EEE MMM dd HH:mm:ss Z yyyy";
+    String DATE21 = "dd MMM";
+    String DATE22 = "yyyy";
+    String DATE23 = "EE";
 
 
     String TIME = "HH:mm:ss";
