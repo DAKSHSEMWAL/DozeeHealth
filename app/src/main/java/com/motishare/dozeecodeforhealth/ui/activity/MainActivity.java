@@ -849,7 +849,7 @@ public class MainActivity extends BaseActivity {
         for (UserData a : tempList) {
             if (a.getBreathRate() != null) {
                 breathList.add(a.getBreathRate());
-                if (a.getHeartRate() > 15 || a.getHeartRate() < 8) {
+                if (a.getBreathRate() > 15 || a.getBreathRate() < 8) {
                     c++;
                 }
             }
@@ -858,7 +858,7 @@ public class MainActivity extends BaseActivity {
         if (breathList.size() != 0) {
             dialogWeeklyBreathrateDetailsBinding.minavg.setText(String.format(Locale.getDefault(), "%d", Collections.min(breathList)));
             dialogWeeklyBreathrateDetailsBinding.maxavg.setText(String.format(Locale.getDefault(), "%d", Collections.max(breathList)));
-            dialogWeeklyBreathrateDetailsBinding.avgavg.setText(String.format(Locale.getDefault(), "%d", mode.getHeartRate()));
+            dialogWeeklyBreathrateDetailsBinding.avgavg.setText(String.format(Locale.getDefault(), "%d", mode.getBreathRate()));
         }
         dialogWeeklyBreathrateDetailsBinding.chart.setTouchEnabled(true);
         dialogWeeklyBreathrateDetailsBinding.chart.setPinchZoom(true);
@@ -871,7 +871,7 @@ public class MainActivity extends BaseActivity {
         for (UserData a : tempList) {
             if (a.getBreathRate() != null) {
                 bloodoxygen.add(a.getO2());
-                if (a.getHeartRate() > 15 || a.getHeartRate() < 8) {
+                if (a.getO2() < 90) {
                     c++;
                 }
             }
@@ -880,7 +880,7 @@ public class MainActivity extends BaseActivity {
         if (bloodoxygen.size() != 0) {
             dialogWeeklyBloodoxygenDetailsBinding.minavg.setText(String.format(Locale.getDefault(), "%d", Collections.min(bloodoxygen)));
             dialogWeeklyBloodoxygenDetailsBinding.maxavg.setText(String.format(Locale.getDefault(), "%d", Collections.max(bloodoxygen)));
-            dialogWeeklyBloodoxygenDetailsBinding.avgavg.setText(String.format(Locale.getDefault(), "%d", mode.getHeartRate()));
+            dialogWeeklyBloodoxygenDetailsBinding.avgavg.setText(String.format(Locale.getDefault(), "%d", mode.getO2()));
         }
         dialogWeeklyBloodoxygenDetailsBinding.chart.setTouchEnabled(true);
         dialogWeeklyBloodoxygenDetailsBinding.chart.setPinchZoom(true);
