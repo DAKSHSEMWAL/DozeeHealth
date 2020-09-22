@@ -58,5 +58,6 @@
     <string name="bpm">BPM</string>
     <string name="daily_average">Daily Average</string>
     <string name="_8_to_12_healthy_range">8 to 12 Healthy Range</string>
+    <string name="_94_healthy_range"><![CDATA[>94 % Healthy Range]]></string>
 
 </resources>

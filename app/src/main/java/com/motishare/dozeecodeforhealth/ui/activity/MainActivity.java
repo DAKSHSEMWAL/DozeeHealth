@@ -806,7 +806,7 @@ public class MainActivity extends BaseActivity {
         int c = 0;
         for (UserData a : tempList) {
             if (a.getBreathRate() != null) {
-                breathList.add(a.getHeartRate());
+                breathList.add(a.getBreathRate());
                 if (a.getHeartRate() > 15 || a.getHeartRate() < 8) {
                     c++;
                 }
