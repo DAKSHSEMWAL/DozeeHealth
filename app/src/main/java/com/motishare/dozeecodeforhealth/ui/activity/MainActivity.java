@@ -44,6 +44,7 @@ import com.motishare.dozeecodeforhealth.databinding.DialogHeartDetailsBinding;
 import com.motishare.dozeecodeforhealth.databinding.DialogProfileDetailsBinding;
 import com.motishare.dozeecodeforhealth.databinding.DialogSleepscoreDetailsBinding;
 import com.motishare.dozeecodeforhealth.databinding.DialogStresslevelDetailsBinding;
+import com.motishare.dozeecodeforhealth.databinding.DialogWeeklyBloodoxygenDetailsBinding;
 import com.motishare.dozeecodeforhealth.databinding.DialogWeeklyBreathrateDetailsBinding;
 import com.motishare.dozeecodeforhealth.databinding.DialogWeeklyHeartDetailsBinding;
 import com.motishare.dozeecodeforhealth.model.BP;
@@ -91,6 +92,7 @@ public class MainActivity extends BaseActivity {
     DialogStresslevelDetailsBinding dialogStresslevelDetailsBinding;
     DialogWeeklyHeartDetailsBinding dialogWeeklyDetailsBinding;
     DialogWeeklyBreathrateDetailsBinding dialogWeeklyBreathrateDetailsBinding;
+    DialogWeeklyBloodoxygenDetailsBinding dialogWeeklyBloodoxygenDetailsBinding;
     DialogProfileDetailsBinding dialogProfileDetailsBinding;
     QuestionModel questionModel;
     int c = 0;
@@ -462,7 +464,13 @@ public class MainActivity extends BaseActivity {
             }
         });
         binding.more3.setOnClickListener(v -> {
-            showBloodOxygen();
+            if (selected == 0) {
+                showBloodOxygen();
+            } else if (selected == 1) {
+                showBloodOxygenDialog();
+            } else {
+
+            }
         });
         binding.more4.setOnClickListener(v -> {
             showBloodPressure();
@@ -801,6 +809,40 @@ public class MainActivity extends BaseActivity {
         dialog.show();
     }
 
+    private void showBloodOxygenDialog() {
+
+        final Dialog dialog = new Dialog(mContext, R.style.MyAlertDialogStyle);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialogWeeklyBloodoxygenDetailsBinding = DataBindingUtil.inflate(LayoutInflater.from(dialog.getContext()), R.layout.dialog_weekly_bloodoxygen_details, null, false);
+        Dali.create(mContext).load(binding.getRoot()).blurRadius(17).into(dialogWeeklyBloodoxygenDetailsBinding.imgBg);
+        dialog.setContentView(dialogWeeklyBloodoxygenDetailsBinding.getRoot());
+        dialogWeeklyBloodoxygenDetailsBinding.time.setText(crrentweek);
+        setBloodOxygenLineData();
+        /*dialogWeeklyBloodoxygenDetailsBinding.knowMore.setOnClickListener(v -> {
+            revealShowImage(dialogWeeklyBloodoxygenDetailsBinding.getRoot(), false, dialog);
+        });*/
+        dialogWeeklyBloodoxygenDetailsBinding.drop.setOnClickListener(v -> {
+            revealShowImage(dialogWeeklyBloodoxygenDetailsBinding.getRoot(), false, dialog);
+        });
+
+        dialog.setOnShowListener(dialogInterface -> revealShowImage(dialogWeeklyBloodoxygenDetailsBinding.getRoot(), true, null));
+
+        dialog.setOnKeyListener((dialogInterface, i, keyEvent) -> {
+            if (i == KeyEvent.KEYCODE_BACK) {
+
+                revealShowImage(dialogWeeklyBloodoxygenDetailsBinding.getRoot(), false, dialog);
+                return true;
+            }
+
+            return false;
+        });
+
+
+        Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+
+        dialog.show();
+    }
+
     private void setBreathLineData() {
         List<Integer> breathList = new ArrayList<>();
         int c = 0;
@@ -821,6 +863,28 @@ public class MainActivity extends BaseActivity {
         dialogWeeklyBreathrateDetailsBinding.chart.setTouchEnabled(true);
         dialogWeeklyBreathrateDetailsBinding.chart.setPinchZoom(true);
         renderBreathData();
+    }
+
+    private void setBloodOxygenLineData() {
+        List<Integer> bloodoxygen = new ArrayList<>();
+        int c = 0;
+        for (UserData a : tempList) {
+            if (a.getBreathRate() != null) {
+                bloodoxygen.add(a.getO2());
+                if (a.getHeartRate() > 15 || a.getHeartRate() < 8) {
+                    c++;
+                }
+            }
+        }
+        dialogWeeklyBloodoxygenDetailsBinding.perss.setText(String.format(Locale.getDefault(), "%d times out of healthy range", c));
+        if (bloodoxygen.size() != 0) {
+            dialogWeeklyBloodoxygenDetailsBinding.minavg.setText(String.format(Locale.getDefault(), "%d", Collections.min(bloodoxygen)));
+            dialogWeeklyBloodoxygenDetailsBinding.maxavg.setText(String.format(Locale.getDefault(), "%d", Collections.max(bloodoxygen)));
+            dialogWeeklyBloodoxygenDetailsBinding.avgavg.setText(String.format(Locale.getDefault(), "%d", mode.getHeartRate()));
+        }
+        dialogWeeklyBloodoxygenDetailsBinding.chart.setTouchEnabled(true);
+        dialogWeeklyBloodoxygenDetailsBinding.chart.setPinchZoom(true);
+        renderBloodOxygen();
     }
 
     private void setHeartLineData() {
@@ -882,6 +946,40 @@ public class MainActivity extends BaseActivity {
 
         dialogWeeklyDetailsBinding.chart.getAxisRight().setEnabled(false);
         setLHeartData();
+    }
+
+    public void renderBloodOxygen() {
+        LimitLine llXAxis = new LimitLine(10f);
+        llXAxis.setLineWidth(4f);
+        llXAxis.enableDashedLine(10f, 10f, 0f);
+        llXAxis.setLabelPosition(LimitLine.LimitLabelPosition.RIGHT_BOTTOM);
+        llXAxis.setTextColor(R.color.White);
+        llXAxis.setTextSize(10f);
+
+        XAxis xAxis = dialogWeeklyBloodoxygenDetailsBinding.chart.getXAxis();
+        xAxis.setAxisMaximum(7f);
+        xAxis.setAxisMinimum(1f);
+        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+        xAxis.setAxisLineColor(Color.TRANSPARENT);
+
+        LimitLine ll1 = new LimitLine(94f);
+        ll1.setLineWidth(1f);
+        ll1.enableDashedLine(10f, 10f, 0f);
+        ll1.setLineColor(Color.WHITE);
+
+
+        YAxis leftAxis = dialogWeeklyBloodoxygenDetailsBinding.chart.getAxisLeft();
+        leftAxis.removeAllLimitLines();
+        leftAxis.addLimitLine(ll1);
+        leftAxis.setAxisMaximum(100f);
+        leftAxis.setAxisMinimum(90f);
+        leftAxis.setLabelCount(10);
+        leftAxis.setZeroLineColor(Color.WHITE);
+        leftAxis.setDrawZeroLine(true);
+        leftAxis.setDrawLimitLinesBehindData(true);
+
+        dialogWeeklyBloodoxygenDetailsBinding.chart.getAxisRight().setEnabled(false);
+        setLBloodOxygen();
     }
 
     public void renderBreathData() {
@@ -1066,6 +1164,75 @@ public class MainActivity extends BaseActivity {
         dialogWeeklyBreathrateDetailsBinding.chart.getXAxis().setDrawGridLines(false);
         dialogWeeklyBreathrateDetailsBinding.chart.getDescription().setEnabled(false);
         dialogWeeklyBreathrateDetailsBinding.chart.getLegend().setEnabled(false);
+    }
+
+    private void setLBloodOxygen() {
+
+        ArrayList<Entry> values = new ArrayList<>();
+        int c = 1;
+        for (UserData a : tempList) {
+            if (a.getO2() != null) {
+                Log.e("Data",""+a.getO2());
+                values.add(new Entry(c, a.getO2()));
+                c = c + 1;
+            }
+        }
+        final ArrayList<String> xAxisLabel = new ArrayList<>();
+        xAxisLabel.add("Su");
+        xAxisLabel.add("Mo");
+        xAxisLabel.add("Tu");
+        xAxisLabel.add("We");
+        xAxisLabel.add("Th");
+        xAxisLabel.add("Fr");
+        xAxisLabel.add("Sa");
+        dialogWeeklyBloodoxygenDetailsBinding.chart.getXAxis().setValueFormatter(new ValueFormatter() {
+            @Override
+            public String getFormattedValue(float value) {
+                return xAxisLabel.get((int) (value - 1));
+            }
+        });
+        LineDataSet set1;
+        if (dialogWeeklyBloodoxygenDetailsBinding.chart.getData() != null &&
+                dialogWeeklyBloodoxygenDetailsBinding.chart.getData().getDataSetCount() > 0) {
+            set1 = (LineDataSet) dialogWeeklyBloodoxygenDetailsBinding.chart.getData().getDataSetByIndex(0);
+            set1.setValues(values);
+            set1.setDrawIcons(false);
+            set1.setMode(LineDataSet.Mode.LINEAR);
+            set1.setCircleColor(Color.WHITE);
+            set1.setLineWidth(1f);
+            set1.setHighLightColor(R.color.ShipCove);
+            set1.setCircleRadius(3f);
+            set1.setDrawCircleHole(false);
+            set1.setValueTextSize(9f);
+            set1.setValueTextColor(Color.WHITE);
+            set1.setLabel("");
+            set1.setFormSize(15.f);
+            dialogWeeklyBloodoxygenDetailsBinding.chart.getData().notifyDataChanged();
+            dialogWeeklyBloodoxygenDetailsBinding.chart.notifyDataSetChanged();
+        } else {
+            set1 = new LineDataSet(values, "");
+            set1.setDrawIcons(false);
+            set1.setCircleColor(Color.WHITE);
+            set1.setLineWidth(1f);
+            set1.setCircleRadius(3f);
+            set1.setDrawCircleHole(false);
+            set1.setLabel("");
+            set1.setValueTextSize(9f);
+            set1.setFormLineWidth(1f);
+            set1.setValueTextColor(Color.WHITE);
+            set1.setFormSize(15.f);
+            ArrayList<ILineDataSet> dataSets = new ArrayList<>();
+            dataSets.add(set1);
+            LineData data = new LineData(dataSets);
+            dialogWeeklyBloodoxygenDetailsBinding.chart.setData(data);
+        }
+        dialogWeeklyBloodoxygenDetailsBinding.chart.getAxisLeft().setTextColor(ContextCompat.getColor(mContext, R.color.White)); // left y-axis
+        dialogWeeklyBloodoxygenDetailsBinding.chart.getXAxis().setTextColor(ContextCompat.getColor(mContext, R.color.White));
+        dialogWeeklyBloodoxygenDetailsBinding.chart.getLegend().setTextColor(ContextCompat.getColor(mContext, R.color.White));
+        dialogWeeklyBloodoxygenDetailsBinding.chart.getAxisLeft().setDrawGridLines(false);
+        dialogWeeklyBloodoxygenDetailsBinding.chart.getXAxis().setDrawGridLines(false);
+        dialogWeeklyBloodoxygenDetailsBinding.chart.getDescription().setEnabled(false);
+        dialogWeeklyBloodoxygenDetailsBinding.chart.getLegend().setEnabled(false);
     }
 
     private void showBreathDialog() {
