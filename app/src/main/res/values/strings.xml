@@ -61,5 +61,6 @@
     <string name="_94_healthy_range"><![CDATA[>94 % Healthy Range]]></string>
     <string name="_130_mmhg_systolic_or_80_mmhg_diastolic_healthy_range"><![CDATA[<130 mmHg Systolic or <80 mmHg Diastolic Healthy Range]]></string>
     <string name="_80_healthy_range"><![CDATA[>80 Healthy Range]]></string>
+    <string name="_90_healthy_range"><![CDATA[>90% Healthy Range]]></string>
 
 </resources>
